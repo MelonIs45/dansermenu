@@ -11,6 +11,8 @@ namespace DanserMenu.v2
         JToken value;
         bool boolval;
 
+        
+
         public Settings()
         {
             InitializeComponent();
@@ -78,6 +80,9 @@ namespace DanserMenu.v2
         {
             var curDir = Directory.GetCurrentDirectory();
             JObject settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
+
+            Console.WriteLine("yes");
+            Console.WriteLine(settingsJson["Dance"]["Flower"]["RadiusMultiplier"]);
 
             //General
             Update_Textbox(settingsJson, textBox1, "General", "OsuSongsDir");
@@ -222,14 +227,12 @@ namespace DanserMenu.v2
             Update_Textbox(settingsJson, textBox76, "Dance", "Flower", "LongJump");
             Update_Textbox(settingsJson, textBox77, "Dance", "Flower", "LongJumpMult");
             Update_Checkbox(settingsJson, checkBox51, "Dance", "Flower", "LongJumpOnEqualPos");
-            Update_Checkbox(settingsJson, checkBox53, "Dance", "Flower", "RadiusMultiplier");
             Update_Textbox(settingsJson, textBox78, "Dance", "HalfCircle", "RadiusMultiplier");
             Update_Textbox(settingsJson, textBox79, "Dance", "HalfCircle", "StreamTrigger");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             string json = File.ReadAllText("settings.json");
             dynamic jsonObj = JsonConvert.DeserializeObject(json);
 
@@ -376,7 +379,6 @@ namespace DanserMenu.v2
             jsonObj["Dance"]["Flower"]["LongJump"] = Convert.ToInt64(textBox76.Text);
             jsonObj["Dance"]["Flower"]["LongJumpMult"] = Convert.ToDouble(textBox77.Text);
             jsonObj["Dance"]["Flower"]["LongJumpOnEqualPos"] = Check_Checkbox(checkBox51);
-            jsonObj["Dance"]["Flower"]["RadiusMultiplier"] = Check_Checkbox(checkBox53);
             jsonObj["Dance"]["HalfCircle"]["RadiusMultiplier"] = Convert.ToDouble(textBox78.Text);
             jsonObj["Dance"]["HalfCircle"]["StreamTrigger"] = Convert.ToInt64(textBox79.Text);
 

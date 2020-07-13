@@ -320,8 +320,6 @@
             this.label117 = new System.Windows.Forms.Label();
             this.label118 = new System.Windows.Forms.Label();
             this.label119 = new System.Windows.Forms.Label();
-            this.checkBox53 = new System.Windows.Forms.CheckBox();
-            this.label133 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -2824,7 +2822,7 @@
             this.groupBox15.Controls.Add(this.label119);
             this.groupBox15.Location = new System.Drawing.Point(6, 7);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(452, 488);
+            this.groupBox15.Size = new System.Drawing.Size(452, 471);
             this.groupBox15.TabIndex = 0;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Dance";
@@ -2862,7 +2860,7 @@
             this.groupBox18.Controls.Add(this.textBox78);
             this.groupBox18.Controls.Add(this.label128);
             this.groupBox18.Controls.Add(this.label129);
-            this.groupBox18.Location = new System.Drawing.Point(9, 408);
+            this.groupBox18.Location = new System.Drawing.Point(9, 389);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(200, 74);
             this.groupBox18.TabIndex = 72;
@@ -2903,8 +2901,6 @@
             // 
             // groupBox17
             // 
-            this.groupBox17.Controls.Add(this.checkBox53);
-            this.groupBox17.Controls.Add(this.label133);
             this.groupBox17.Controls.Add(this.textBox77);
             this.groupBox17.Controls.Add(this.textBox76);
             this.groupBox17.Controls.Add(this.textBox75);
@@ -2923,7 +2919,7 @@
             this.groupBox17.Controls.Add(this.label124);
             this.groupBox17.Location = new System.Drawing.Point(9, 170);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(200, 232);
+            this.groupBox17.Size = new System.Drawing.Size(200, 213);
             this.groupBox17.TabIndex = 71;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Flower";
@@ -3132,25 +3128,7 @@
             this.label119.TabIndex = 67;
             this.label119.Text = "Slider Dance?";
             // 
-            // checkBox53
-            // 
-            this.checkBox53.AutoSize = true;
-            this.checkBox53.Location = new System.Drawing.Point(175, 210);
-            this.checkBox53.Name = "checkBox53";
-            this.checkBox53.Size = new System.Drawing.Size(15, 14);
-            this.checkBox53.TabIndex = 84;
-            this.checkBox53.UseVisualStyleBackColor = true;
-            // 
-            // label133
-            // 
-            this.label133.AutoSize = true;
-            this.label133.Location = new System.Drawing.Point(6, 210);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(90, 13);
-            this.label133.TabIndex = 83;
-            this.label133.Text = "Radius Multiplier?";
-            // 
-            // Form3
+            // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -3159,7 +3137,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form3";
+            this.Name = "Settings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.tabControl1.ResumeLayout(false);
@@ -3505,7 +3483,5 @@
         private System.Windows.Forms.TextBox textBox61;
         private System.Windows.Forms.CheckBox checkBox52;
         private System.Windows.Forms.Label label132;
-        private System.Windows.Forms.CheckBox checkBox53;
-        private System.Windows.Forms.Label label133;
     }
 }
