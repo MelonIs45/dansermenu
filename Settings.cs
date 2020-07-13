@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DanserMenu.v2
 {
-    public partial class Form3 : Form
+    public partial class Settings : Form
     {
         JToken value;
         bool boolval;
 
-        public Form3()
+        public Settings()
         {
             InitializeComponent();
         }
@@ -229,6 +222,7 @@ namespace DanserMenu.v2
             Update_Textbox(settingsJson, textBox76, "Dance", "Flower", "LongJump");
             Update_Textbox(settingsJson, textBox77, "Dance", "Flower", "LongJumpMult");
             Update_Checkbox(settingsJson, checkBox51, "Dance", "Flower", "LongJumpOnEqualPos");
+            Update_Checkbox(settingsJson, checkBox53, "Dance", "Flower", "RadiusMultiplier");
             Update_Textbox(settingsJson, textBox78, "Dance", "HalfCircle", "RadiusMultiplier");
             Update_Textbox(settingsJson, textBox79, "Dance", "HalfCircle", "StreamTrigger");
         }
@@ -382,9 +376,9 @@ namespace DanserMenu.v2
             jsonObj["Dance"]["Flower"]["LongJump"] = Convert.ToInt64(textBox76.Text);
             jsonObj["Dance"]["Flower"]["LongJumpMult"] = Convert.ToDouble(textBox77.Text);
             jsonObj["Dance"]["Flower"]["LongJumpOnEqualPos"] = Check_Checkbox(checkBox51);
+            jsonObj["Dance"]["Flower"]["RadiusMultiplier"] = Check_Checkbox(checkBox53);
             jsonObj["Dance"]["HalfCircle"]["RadiusMultiplier"] = Convert.ToDouble(textBox78.Text);
             jsonObj["Dance"]["HalfCircle"]["StreamTrigger"] = Convert.ToInt64(textBox79.Text);
-
 
             string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
             File.WriteAllText("settings.json", output);
@@ -431,6 +425,9 @@ namespace DanserMenu.v2
 
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

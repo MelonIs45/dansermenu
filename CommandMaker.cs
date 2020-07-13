@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using DiscordRPC;
 using DiscordRPC.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace DanserMenu.v2
 {
-    public partial class Form2 : Form
+    public partial class CommandMaker : Form
     {
         public string command = "";
-        public DiscordRpcClient client;
+        public DiscordRpcClient client { get; set; }
 
-        public Form2()
+        public CommandMaker()
         {
             InitializeComponent();
             comboBox3.Text = "flower";
@@ -26,11 +22,10 @@ namespace DanserMenu.v2
 
         public void songAdder(string query)
         {
-            var appdataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var curDir = Directory.GetCurrentDirectory();
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
 
-            List<string> splitAppdataPath = new List<string>(appdataDir.Split(new string[] { "Roaming" }, StringSplitOptions.None));
-
-            string osuSongPath = splitAppdataPath[0] + "Local\\osu!\\Songs";
+            string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
             string[] songPath = Directory.GetDirectories(osuSongPath, "*", SearchOption.TopDirectoryOnly);
             foreach (string song in songPath)
@@ -38,7 +33,7 @@ namespace DanserMenu.v2
                 bool contains = song.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
                 if (contains == true)
                 {
-                    List<string> osuSong = new List<string>(song.Split(new string[] { osuSongPath + "\\" }, StringSplitOptions.None));
+                    List<string> osuSong = new List<string>(song.Split(new string[] { osuSongPath }, StringSplitOptions.None));
                     comboBox1.Items.Add(osuSong[1]);
                 }
                 else
@@ -69,13 +64,10 @@ namespace DanserMenu.v2
 
             songAdder(textBox1.Text);
         }
+
         private void OnApplicationExit(Object sender, FormClosingEventArgs e)
         {
             client.Dispose();
-        }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -103,17 +95,11 @@ namespace DanserMenu.v2
             richTextBox1.Text = commandString;
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
             songAdder(textBox1.Text);
-            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,34 +134,29 @@ namespace DanserMenu.v2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                client.Dispose();
-            }
-            catch { }
+            //if (client != null)
+            //{
+            //    client.Dispose();
+            //}
 
             List<string> splitTitle = new List<string>(comboBox1.Text.Split(new string[] { "- " }, 2, StringSplitOptions.None));
             string title = splitTitle[1];
 
-            client = new DiscordRpcClient("727207925222998147");
+            //client = new DiscordRpcClient("727207925222998147");
+            //client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
+            //client.Initialize();
 
-            client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
-
-
-
-            client.Initialize();
-
-            client.SetPresence(new RichPresence()
-            {
-                Details = $"Playing: {title} [{comboBox2.Text}]",
-                State = $"Cursors: {numericUpDown1.Value}",
-                Assets = new Assets()
-                {
-                    LargeImageKey = "menu",
-                    LargeImageText = "DAИSER Menu",
-                    SmallImageKey = "coinbig"
-                }
-            });
+            //client.SetPresence(new RichPresence()
+            //{
+            //    Details = $"Playing: {title} [{comboBox2.Text}]",
+            //    State = $"Cursors: {numericUpDown1.Value}",
+            //    Assets = new Assets()
+            //    {
+            //        LargeImageKey = "menu",
+            //        LargeImageText = "DAИSER Menu",
+            //        SmallImageKey = "coinbig"
+            //    }
+            //});
 
             string strCmdText = "/C" + richTextBox1.Text;
             System.Diagnostics.Process.Start("CMD.exe", strCmdText);
@@ -190,6 +171,14 @@ namespace DanserMenu.v2
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
