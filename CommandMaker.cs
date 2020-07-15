@@ -22,9 +22,7 @@ namespace DanserMenu.v2
 
         public void songAdder(string query)
         {
-            var curDir = Directory.GetCurrentDirectory();
-            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
-
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
             string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
             string[] songPath = Directory.GetDirectories(osuSongPath, "*", SearchOption.TopDirectoryOnly);
@@ -106,11 +104,8 @@ namespace DanserMenu.v2
         {
             comboBox2.Items.Clear();
 
-            var appdataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-
-            List<string> splitAppdataPath = new List<string>(appdataDir.Split(new string[] { "Roaming" }, StringSplitOptions.None));
-
-            string osuSongPath = splitAppdataPath[0] + "Local\\osu!\\Songs\\" + comboBox1.Text;
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+            string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
             string[] songDiffs = Directory.GetFiles(osuSongPath, "*.osu", SearchOption.TopDirectoryOnly);
 
