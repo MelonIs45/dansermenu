@@ -107,7 +107,7 @@ namespace DanserMenu.v2
             JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
             string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
-            string[] songDiffs = Directory.GetFiles(osuSongPath, "*.osu", SearchOption.TopDirectoryOnly);
+            string[] songDiffs = Directory.GetFiles(osuSongPath + comboBox1.Text + "\\", "*.osu", SearchOption.TopDirectoryOnly);
 
             foreach (string diffs in songDiffs)
             {
