@@ -6,6 +6,6 @@ Danser menu which includes easy to use map selector plus search bar to find your
 
 How to use:
 
-* Download `DanserMenuV2.0.zip` and extract it
+* Download `DanserMenuVX.X.zip` and extract it
 * Place all files in your danser folder
-* Run `menuser.exe` and enjoy!
+* Run `DanserMenu-X.X.exe` and enjoy!
