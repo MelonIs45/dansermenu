@@ -93,11 +93,35 @@ namespace DanserMenu.v2
             }
             else
             {
-                spo = " -cursors=" + numericUpDown1.Value + " -tag=" + numericUpDown4.Value + " -speed=" + numericUpDown2.Value + " -pitch=" + numericUpDown3.Value + extraSettings;
+                spo = $"{formatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{extraSettings}";
             }
-            
-            string commandString = label11.Text + " -t=" + '"' + title + '"' + " -d=" + '"' + comboBox2.Text + '"' + spo;
+
+            string commandString = $"{label11.Text} -t=\"{title}\" -d=\"{comboBox2.Text}\"{spo}";
             richTextBox1.Text = commandString;
+        }
+
+        private string formatExtraCommands(decimal cursors, decimal tag, decimal speed, decimal pitch)
+        {
+            string extraCommand = "";
+
+            if (cursors != 1)
+            {
+                extraCommand += $" -cursors={cursors}";
+            }
+            if (tag != 1)
+            {
+                extraCommand += $" -tag={tag}";
+            }
+            if (speed != 1)
+            {
+                extraCommand += $" -speed={speed}";
+            }
+            if (pitch != 1)
+            {
+                extraCommand += $" -pitch={pitch}";
+            }
+
+            return extraCommand;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
