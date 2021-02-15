@@ -8,4 +8,4 @@ How to use:
 
 * Download `DanserMenuVX.X.zip` and extract it
 * Place all files in your danser folder
-* Run `DanserMenu-X.X.exe` and enjoy!
+* Run `DanserMenu.exe` and enjoy!
