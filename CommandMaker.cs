@@ -44,6 +44,7 @@ namespace DanserMenu.v2
         {
             var curDir = Directory.GetCurrentDirectory();
             string[] filePaths = Directory.GetFiles(curDir, "*.exe", SearchOption.TopDirectoryOnly);
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
 
             foreach (string file in filePaths)
             {
@@ -54,6 +55,7 @@ namespace DanserMenu.v2
             }
 
             richTextBox1.Text = command;
+            label14.Text = @$".{settingsJson["Recording"]["Container"]}";
 
             songAdder(textBox1.Text);
         }
@@ -68,18 +70,47 @@ namespace DanserMenu.v2
 
 
             string extraSettings = "";
-
-            if (checkBox1.Checked && checkBox2.Checked)
-            {
-                extraSettings = " -fps -debug";
-            }
-            else if (checkBox1.Checked && checkBox2.Checked == false)
-            {
-                extraSettings = " -fps";
-            }
-            else if (checkBox1.Checked == false && checkBox2.Checked)
+            string recordSettings = "";
+            string skinSettings = "";
+            string timeSettings = "";
+            string modSettings = "";
+            
+            if (checkBox2.Checked)
             {
                 extraSettings = " -debug";
+            }
+
+            if (recordButton.Checked)
+            {
+                if (outputName.Text != "")
+                {
+                    recordSettings = $" -out=\"{outputName.Text}\"";
+                }
+                else
+                {
+                    recordSettings = " -record";
+                }
+                
+            }
+
+            if (SkinName.Text != "")
+            {
+                skinSettings = $" -skin=\"{SkinName.Text}\"";
+            }
+
+            if (startTime.Value != 0)
+            {
+                timeSettings += $" -start={startTime.Value}";
+            }
+
+            if (endTime.Value != 0)
+            {
+                timeSettings += $" -end={endTime.Value}";
+            }
+
+            if (modName.Text != "")
+            {
+                modSettings += $" -mods=\"{modName.Text}\"";
             }
 
             string spo;
@@ -96,7 +127,15 @@ namespace DanserMenu.v2
                 spo = $"{formatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{extraSettings}";
             }
 
-            string commandString = $"{label11.Text} -t=\"{title}\" -d=\"{comboBox2.Text}\"{spo}";
+            var commandString = ""; 
+            
+            commandString = $"{label11.Text} -t=\"{title}\" -d=\"{comboBox2.Text}\"{spo}{recordSettings}{skinSettings}{modSettings}{timeSettings}";
+
+            if (replayButton.Checked)
+            {
+                commandString = $"{label11.Text} -r=\"{replayPath.Text}\"{formatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{recordSettings}{extraSettings}{skinSettings}{modSettings}{timeSettings}";
+            }
+            
             richTextBox1.Text = commandString;
         }
 
@@ -112,13 +151,21 @@ namespace DanserMenu.v2
             {
                 extraCommand += $" -tag={tag}";
             }
+
             if (speed != 1)
             {
-                extraCommand += $" -speed={speed}";
+                if (!(modName.Text.Contains("HT") || modName.Text.Contains("DT") || modName.Text.Contains("NC")))
+                {
+                    extraCommand += $" -speed={speed}";
+                }
             }
+
             if (pitch != 1)
             {
-                extraCommand += $" -pitch={pitch}";
+                if (!(modName.Text.Contains("HT") || modName.Text.Contains("DT") || modName.Text.Contains("NC")))
+                {
+                    extraCommand += $" -pitch={pitch}";
+                }
             }
 
             return extraCommand;
@@ -179,7 +226,78 @@ namespace DanserMenu.v2
             if (checkBox1.Checked) { ko = true; }
             else { ko = false; }
         }
+        
+        private void recordButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (recordButton.Checked)
+            {
+                outputName.Enabled = true;
+            }
+            else
+            {
+                outputName.Enabled = false;
+            }
+        }
+        
+        private void replayButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (replayButton.Checked)
+            {
+                replayPath.Enabled = true;
+                browseReplay.Enabled = true;
+            }
+            else
+            {
+                replayPath.Enabled = false;
+                browseReplay.Enabled = false;
+            }
+        }
 
+        private void browseReplay_Click(object sender, EventArgs e)
+        {
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+
+            openFileDialog1 = new OpenFileDialog()
+            {
+                InitialDirectory = settingsJson["General"]["OsuSongsDir"].ToString().Replace("Songs", "Replays"),
+                FileName = "Select a .osr file",
+                Filter = @"Osr files (*.osr)|*.osr",
+                Title = @"Open osr file"
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    replayPath.Text = openFileDialog1.FileName;
+                }
+                catch
+                {
+                }
+            }
+        }
+        
+        private void skinButton_Click(object sender, EventArgs e)
+        {
+            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+
+            folderBrowserDialog1 = new FolderBrowserDialog()
+            {
+                SelectedPath = settingsJson["General"]["OsuSkinsDir"].ToString(),
+            };
+
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    SkinName.Text = folderBrowserDialog1.SelectedPath.Split(new char[] {'\\'}).Last();
+                }
+                catch
+                {
+                }
+            }
+        }
+        
         private void mainMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -202,6 +320,13 @@ namespace DanserMenu.v2
         {
 
         }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
 
         
     }
