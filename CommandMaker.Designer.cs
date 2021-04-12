@@ -190,7 +190,6 @@
             this.numericUpDown2.DecimalPlaces = 2;
             this.numericUpDown2.Increment = new decimal(new int[] {25, 0, 0, 131072});
             this.numericUpDown2.Location = new System.Drawing.Point(591, 87);
-            this.numericUpDown2.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(58, 20);
             this.numericUpDown2.TabIndex = 14;
@@ -201,7 +200,6 @@
             this.numericUpDown3.DecimalPlaces = 2;
             this.numericUpDown3.Increment = new decimal(new int[] {25, 0, 0, 131072});
             this.numericUpDown3.Location = new System.Drawing.Point(591, 123);
-            this.numericUpDown3.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(58, 20);
             this.numericUpDown3.TabIndex = 15;
@@ -220,7 +218,6 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(105, 296);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(544, 37);
             this.richTextBox1.TabIndex = 19;
             this.richTextBox1.Text = "";

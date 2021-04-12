@@ -64,16 +64,16 @@ namespace DanserMenu.v2
         {
             List<string> splitTitle = new List<string>(comboBox1.Text.Split(new string[] { "- " }, 2, StringSplitOptions.None));
 
-            string title = "";
+            var title = "";
             try { title = splitTitle[1]; }
             catch { }
 
 
-            string extraSettings = "";
-            string recordSettings = "";
-            string skinSettings = "";
-            string timeSettings = "";
-            string modSettings = "";
+            var extraSettings = "";
+            var recordSettings = "";
+            var skinSettings = "";
+            var timeSettings = "";
+            var modSettings = "";
             
             if (checkBox2.Checked)
             {
@@ -118,7 +118,7 @@ namespace DanserMenu.v2
             {
                 spo = " -play";
             }
-            else if (ko)
+            if (ko)
             {
                 spo = " -knockout";
             }
@@ -141,7 +141,7 @@ namespace DanserMenu.v2
 
         private string formatExtraCommands(decimal cursors, decimal tag, decimal speed, decimal pitch)
         {
-            string extraCommand = "";
+            var extraCommand = "";
 
             if (cursors != 1)
             {
@@ -183,17 +183,17 @@ namespace DanserMenu.v2
             comboBox2.Items.Clear();
 
             JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
-            string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
+            var osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
             string[] songDiffs = Directory.GetFiles(osuSongPath + "\\" + comboBox1.Text + "\\", "*.osu", SearchOption.TopDirectoryOnly);
 
-            foreach (string diffs in songDiffs)
+            foreach (var diffs in songDiffs)
             {
                 var count = diffs.Count(x => x == '[');
                 if (count > 1)
                 {
                     List<string> attrs = new List<string>(diffs.Split(new string[] { ") " }, StringSplitOptions.None));
-                    string difficultyName = attrs[1];
+                    var difficultyName = attrs[1];
                     List<string> difficulty = new List<string>(difficultyName.Split(new string[] { "[", "]" }, StringSplitOptions.None));
                     try { comboBox2.Items.Add(difficulty[1]); }
                     catch { }
@@ -209,7 +209,7 @@ namespace DanserMenu.v2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string strCmdText = "/C" + richTextBox1.Text;
+            var strCmdText = "/C" + richTextBox1.Text;
             System.Diagnostics.Process.Start("CMD.exe", strCmdText);
         }
 
