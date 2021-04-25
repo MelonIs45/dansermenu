@@ -73,6 +73,7 @@
             this.endTime = new System.Windows.Forms.NumericUpDown();
             this.mods = new System.Windows.Forms.Label();
             this.modName = new System.Windows.Forms.TextBox();
+            this.skipBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDown3)).BeginInit();
@@ -475,11 +476,21 @@
             this.modName.Size = new System.Drawing.Size(92, 20);
             this.modName.TabIndex = 47;
             // 
+            // skipBox
+            // 
+            this.skipBox.Location = new System.Drawing.Point(217, 221);
+            this.skipBox.Name = "skipBox";
+            this.skipBox.Size = new System.Drawing.Size(59, 18);
+            this.skipBox.TabIndex = 48;
+            this.skipBox.Text = "skip";
+            this.skipBox.UseVisualStyleBackColor = true;
+            // 
             // CommandMaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 345);
+            this.Controls.Add(this.skipBox);
             this.Controls.Add(this.modName);
             this.Controls.Add(this.mods);
             this.Controls.Add(this.endTime);
@@ -535,6 +546,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.CheckBox skipBox;
 
         private System.Windows.Forms.TextBox modName;
         private System.Windows.Forms.Label mods;

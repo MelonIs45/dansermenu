@@ -18,20 +18,23 @@ namespace DanserMenu.v2
             InitializeComponent();
         }
 
-        public void songAdder(string query)
+        public void SongAdder(string query)
         {
-            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
-            string osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+            var osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
-            string[] songPath = Directory.GetDirectories(osuSongPath, "*", SearchOption.TopDirectoryOnly);
-            foreach (string song in songPath)
+            var songPath = Directory.GetDirectories(osuSongPath, "*", SearchOption.TopDirectoryOnly);
+            foreach (var song in songPath)
             {
-                bool contains = song.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
+                var contains = song.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0;
                 if (contains)
                 {
-                    List<string> osuSong = new List<string>(song.Split(new string[] { osuSongPath + "\\" }, StringSplitOptions.None));
+                    var osuSong = new List<string>(song.Split(new string[] { osuSongPath + "\\" }, StringSplitOptions.None));
                     try { comboBox1.Items.Add(osuSong[1]); }
-                    catch { }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
                 else
                 {
@@ -43,30 +46,36 @@ namespace DanserMenu.v2
         private void Form2_Load(object sender, EventArgs e)
         {
             var curDir = Directory.GetCurrentDirectory();
-            string[] filePaths = Directory.GetFiles(curDir, "*.exe", SearchOption.TopDirectoryOnly);
-            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
+            var filePaths = Directory.GetFiles(curDir, "*.exe", SearchOption.TopDirectoryOnly);
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{curDir}\settings.json"));
 
-            foreach (string file in filePaths)
+            foreach (var file in filePaths)
             {
-                List<string> splitFilePath = new List<string>(file.Split(new string[] { "\\" }, StringSplitOptions.None));
+                var splitFilePath = new List<string>(file.Split(new string[] { "\\" }, StringSplitOptions.None));
 
                 try { comboBox4.Items.Add(splitFilePath[splitFilePath.Count - 1]); }
-                catch { }
+                catch
+                {
+                    // ignored
+                }
             }
 
             richTextBox1.Text = command;
             label14.Text = @$".{settingsJson["Recording"]["Container"]}";
 
-            songAdder(textBox1.Text);
+            SongAdder(textBox1.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<string> splitTitle = new List<string>(comboBox1.Text.Split(new string[] { "- " }, 2, StringSplitOptions.None));
+            var splitTitle = new List<string>(comboBox1.Text.Split(new string[] { "- " }, 2, StringSplitOptions.None));
 
             var title = "";
             try { title = splitTitle[1]; }
-            catch { }
+            catch
+            {
+                // ignored
+            }
 
 
             var extraSettings = "";
@@ -108,12 +117,17 @@ namespace DanserMenu.v2
                 timeSettings += $" -end={endTime.Value}";
             }
 
+            if (skipBox.Checked)
+            {
+                timeSettings += " -skip";
+            }
+
             if (modName.Text != "")
             {
                 modSettings += $" -mods=\"{modName.Text}\"";
             }
 
-            string spo;
+            var spo = "";
             if (po)
             {
                 spo = " -play";
@@ -124,22 +138,20 @@ namespace DanserMenu.v2
             }
             else
             {
-                spo = $"{formatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{extraSettings}";
+                spo = $"{FormatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{extraSettings}";
             }
 
-            var commandString = ""; 
-            
-            commandString = $"{label11.Text} -t=\"{title}\" -d=\"{comboBox2.Text}\"{spo}{recordSettings}{skinSettings}{modSettings}{timeSettings}";
+            var commandString = $"{label11.Text} -t=\"{title}\" -d=\"{comboBox2.Text}\"{spo}{recordSettings}{skinSettings}{modSettings}{timeSettings}";
 
             if (replayButton.Checked)
             {
-                commandString = $"{label11.Text} -r=\"{replayPath.Text}\"{formatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{recordSettings}{extraSettings}{skinSettings}{modSettings}{timeSettings}";
+                commandString = $"{label11.Text} -r=\"{replayPath.Text}\"{FormatExtraCommands(numericUpDown1.Value, numericUpDown4.Value, numericUpDown2.Value, numericUpDown3.Value)}{recordSettings}{extraSettings}{skinSettings}{modSettings}{timeSettings}";
             }
             
             richTextBox1.Text = commandString;
         }
 
-        private string formatExtraCommands(decimal cursors, decimal tag, decimal speed, decimal pitch)
+        private string FormatExtraCommands(decimal cursors, decimal tag, decimal speed, decimal pitch)
         {
             var extraCommand = "";
 
@@ -175,34 +187,40 @@ namespace DanserMenu.v2
         {
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
-            songAdder(textBox1.Text);
+            SongAdder(textBox1.Text);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
 
-            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
             var osuSongPath = settingsJson["General"]["OsuSongsDir"].ToString();
 
-            string[] songDiffs = Directory.GetFiles(osuSongPath + "\\" + comboBox1.Text + "\\", "*.osu", SearchOption.TopDirectoryOnly);
+            var songDiffs = Directory.GetFiles(osuSongPath + "\\" + comboBox1.Text + "\\", "*.osu", SearchOption.TopDirectoryOnly);
 
             foreach (var diffs in songDiffs)
             {
                 var count = diffs.Count(x => x == '[');
                 if (count > 1)
                 {
-                    List<string> attrs = new List<string>(diffs.Split(new string[] { ") " }, StringSplitOptions.None));
+                    var attrs = new List<string>(diffs.Split(new string[] { ") " }, StringSplitOptions.None));
                     var difficultyName = attrs[1];
-                    List<string> difficulty = new List<string>(difficultyName.Split(new string[] { "[", "]" }, StringSplitOptions.None));
+                    var difficulty = new List<string>(difficultyName.Split(new string[] { "[", "]" }, StringSplitOptions.None));
                     try { comboBox2.Items.Add(difficulty[1]); }
-                    catch { }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
                 else
                 {
-                    List<string> difficulty = new List<string>(diffs.Split(new string[] { "[", "]" }, StringSplitOptions.None));
+                    var difficulty = new List<string>(diffs.Split(new string[] { "[", "]" }, StringSplitOptions.None));
                     try { comboBox2.Items.Add(difficulty[1]); }
-                    catch { }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
             }
         }
@@ -273,13 +291,14 @@ namespace DanserMenu.v2
                 }
                 catch
                 {
+                    // ignored
                 }
             }
         }
         
         private void skinButton_Click(object sender, EventArgs e)
         {
-            JObject settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
 
             folderBrowserDialog1 = new FolderBrowserDialog()
             {
@@ -294,6 +313,7 @@ namespace DanserMenu.v2
                 }
                 catch
                 {
+                    // ignored
                 }
             }
         }
