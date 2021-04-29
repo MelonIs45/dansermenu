@@ -1,1 +1,0 @@
-D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\AppPackages\DanserMenuRewrite_1.0.0.0_Debug_Test\DanserMenuRewrite_1.0.0.0_x86_x64_Debug.msixbundle
