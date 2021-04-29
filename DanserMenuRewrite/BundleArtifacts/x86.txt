@@ -1,0 +1,2 @@
+MainPackage=D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\bin\x86\Debug\DanserMenuRewrite_1.0.0.0_x86_Debug.msix
+SymbolPackage=D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\obj\x86\Debug\Symbols\DanserMenuRewrite_1.0.0.0_x86_Debug.appxsym

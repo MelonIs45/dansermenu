@@ -1,0 +1,7 @@
+﻿"D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\obj\x86\Release\ilc\in\DanserMenuRewrite.exe"
+/Lib:"D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\obj\x86\Release\ilc\in"
+/Lib:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.native.compiler\2.2.9-rel-29512-01\tools\x86\ilc\lib\Private"
+/WinMD:"D:\github.com\melonis45\dansermenu\rewrite\DanserMenuRewrite\obj\x86\Release\ilc\in\WinMetadata\Windows.winmd"
+/VSTelemetrySessionSettings:"{\"IsOptedIn\":true,\"HostName\":\"Dev14\",\"AppInsightsInstrumentationKey\":\"f144292e-e3b2-4011-ac90-20e5c03fbce5\",\"AsimovInstrumentationKey\":\"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70\",\"AppId\":1001,\"UserId\":\"eb2fe343-344b-4778-834e-1433bb27c5a5\",\"Id\":\"1006efbc-de42-4833-ab89-43b39a296aae\",\"ProcessStartTime\":637552308887640127}"
+/RdXmlPath:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.net.native.compiler\2.2.9-rel-29512-01\tools\LibraryXML"
+/RunOnlyPreDR

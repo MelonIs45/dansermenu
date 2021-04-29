@@ -8,7 +8,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Height="440" Width="957">
+        <TextBlock x:Name="TebLabel" HorizontalAlignment="Left" Margin="30,30,0,0" Text="DANSER Menu made by Meloons#8078" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="285" FontSize="16"/>
+        <TextBox x:Name="TebSearch" HorizontalAlignment="Left" Height="44" Margin="30,84,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="537" PlaceholderText="Search" FontSize="24" TextChanged="TebSearch_TextChanged"/>
+        <ComboBox Header="Map" x:Name="CobMaps" Height="66" Margin="30,145,0,0" Width="752"  PlaceholderText="Pick a map" SelectionChanged="CobMaps_SelectionChanged"/>
+        <ComboBox Header="Mode" x:Name="CobMode" Height="66" Width="269" Margin="30,226,0,0" PlaceholderText="Pick a mode">
+            <x:String>Play</x:String>
+            <x:String>Knockout</x:String>
+            <x:String>Replay</x:String>
+        </ComboBox>
+        <Button x:Name="BuRun" Content="RUN" Margin="390,250,0,0" VerticalAlignment="Top" Height="74" Width="238" FontSize="36" Click="BuRun_Click"/>
+        <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="451,51,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
 
     </Grid>
 </Page>
