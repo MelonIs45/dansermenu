@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="MonoGame.Framework" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="MonoGame.Framework">
+				<NamedResource name="MonoGame.Framework.WindowsUniversal.targets" uri="ms-resource://MonoGame.Framework/Files/MonoGame.Framework/MonoGame.Framework.WindowsUniversal.targets">
+					<Candidate type="Path">
+						<Value>MonoGame.Framework\MonoGame.Framework.WindowsUniversal.targets</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>
