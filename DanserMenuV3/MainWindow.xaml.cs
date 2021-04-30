@@ -32,6 +32,7 @@ namespace DanserMenuV3
                     FROM beatmaps
                     WHERE dir LIKE '%{TebSearch.Text}%'
                     OR tags LIKE '%{TebSearch.Text}%'
+                    AND mode = 0
                 ";
 
                 using (var reader = command.ExecuteReader())
@@ -67,15 +68,22 @@ namespace DanserMenuV3
             {
                 var md5 = reader.GetString(21);
 
-                Process process = new System.Diagnostics.Process();
-                ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     FileName = $"danser.exe",
                     Arguments = $"-md5={md5}",
                 };
                 process.StartInfo = startInfo;
 
-                process.Start();
+                try
+                {
+                    process.Start();
+                } catch (System.ComponentModel.Win32Exception)
+                {
+                    MessageBox.Show("danser.exe not found in the same directory as the program!");
+                }
+                
 
                 TebMd5.Text = $"Command: {startInfo.Arguments}";
                 Debug.WriteLine(TebMd5.Text);

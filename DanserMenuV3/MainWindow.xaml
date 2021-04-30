@@ -1,4 +1,4 @@
-﻿<Window x:Class="DanserMenuV3.MainWindow"
+<Window x:Class="DanserMenuV3.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,7 +17,7 @@
         <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
 
         <TextBlock Text="Pick a map:" HorizontalAlignment="Left" Margin="25,129,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CobMaps" Margin="25,150,25,0" VerticalAlignment="Top" Height="44" FontSize="20"/>
+        <ComboBox x:Name="CobMaps" Margin="25,150,25,0" Padding="5,8,5,8" VerticalAlignment="Top" Height="44" FontSize="20"/>
 
         <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="25,215,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,236,0,0" VerticalAlignment="Top" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged">
@@ -25,20 +25,16 @@
             <ComboBoxItem Content="Play"/>
             <ComboBoxItem Content="Replay"/>
         </ComboBox>
-        <Label Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="251,236,0,0" VerticalAlignment="Top" Height="36"/>
-        
-        <Border BorderThickness="1" BorderBrush="Black">
-            <TextBlock x:Name="TebCurReplay" HorizontalAlignment="Left" Margin="395,236,0,0" Padding="5,8,5,5" Text="Nothing Selected!" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="380" FontWeight="Normal" FontStyle="Normal">
+        <Label Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="230,236,0,0" VerticalAlignment="Top" Height="36"/>
 
-                <TextBlock.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
-                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBlock.Background>
-
-            </TextBlock>
-        </Border>
+        <TextBlock x:Name="TebCurReplay" HorizontalAlignment="Right" Margin="0,236,25,0" Padding="5,3,3,5" Text="Nothing Selected!" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="375" FontWeight="Normal" FontStyle="Normal">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
+                    <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+        <Border BorderThickness="1" BorderBrush="#FFACACAC" Margin="0,236,25,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="36" Width="375" />
     </Grid>
-</Window>
-
+</Window>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
