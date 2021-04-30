@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows7.0": {
+    ".NETCoreApp,Version=v3.1": {
       "Microsoft.Data.Sqlite/5.0.5": {
         "type": "package",
         "dependencies": {
@@ -265,41 +265,40 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0-windows7.0": [
+    ".NETCoreApp,Version=v3.1": [
       "Microsoft.Data.Sqlite >= 5.0.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ryanp\\.nuget\\packages\\": {},
-    "D:\\Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\18u-rpietras\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\github.com\\melonis45\\dansermenu\\rewrite\\DanserMenuV3\\DanserMenuV3.csproj",
+      "projectUniqueName": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
       "projectName": "DanserMenuV3",
-      "projectPath": "D:\\github.com\\melonis45\\dansermenu\\rewrite\\DanserMenuV3\\DanserMenuV3.csproj",
-      "packagesPath": "C:\\Users\\ryanp\\.nuget\\packages\\",
-      "outputPath": "D:\\github.com\\melonis45\\dansermenu\\rewrite\\DanserMenuV3\\obj\\",
+      "projectPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+      "packagesPath": "C:\\Users\\18u-rpietras\\.nuget\\packages\\",
+      "outputPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\ryanp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\18u-rpietras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0-windows7.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "netcoreapp3.1": {
           "projectReferences": {}
         }
       },
@@ -310,8 +309,7 @@
       }
     },
     "frameworks": {
-      "net5.0-windows7.0": {
-        "targetAlias": "net5.0-windows",
+      "netcoreapp3.1": {
         "dependencies": {
           "Microsoft.Data.Sqlite": {
             "target": "Package",
@@ -336,7 +334,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

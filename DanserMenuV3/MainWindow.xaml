@@ -27,23 +27,14 @@
         </ComboBox>
 
         <Label HorizontalAlignment="Right" Height="59" Margin="0,229,25,0" VerticalAlignment="Top" Width="511">
-            <Border Margin="-5"
+            <Border
                 BorderBrush="Gray"
-                BorderThickness="1">
+                BorderThickness="1" Height="35">
                 <TextBlock x:Name="TebOsrPath" TextWrapping="WrapWithOverflow" Margin="5, 5, 5, 5"  Padding="2,2,2,2">
                 osr file path
                 </TextBlock>
             </Border>
         </Label>
-
-
-
     </Grid>
 </Window>
 
-<!--<ComboBox Header="Map" x:Name="CobMaps" Height="66" Margin="30,145,0,0" Width="752"  PlaceholderText="Pick a map" SelectionChanged="CobMaps_SelectionChanged"/>
-<ComboBox Header="Mode" x:Name="CobMode" Height="66" Width="269" Margin="30,226,0,0" PlaceholderText="Pick a mode">
-    <x:String>Play</x:String>
-    <x:String>Knockout</x:String>
-    <x:String>Replay</x:String>
-</ComboBox>-->
