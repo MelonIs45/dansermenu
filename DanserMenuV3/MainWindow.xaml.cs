@@ -106,8 +106,8 @@ namespace DanserMenuV3
                     if (result == true)
                     {
                         // Open document 
-                        var filename = replayFileDialog.FileName;
-                        TebOsrPath.Text = filename;
+                        var filename = replayFileDialog.SafeFileName;
+                        TebCurReplay.Text = filename;
                     }
                     break;
             }

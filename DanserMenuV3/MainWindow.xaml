@@ -25,16 +25,20 @@
             <ComboBoxItem Content="Play"/>
             <ComboBoxItem Content="Replay"/>
         </ComboBox>
+        <Label Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="251,236,0,0" VerticalAlignment="Top" Height="36"/>
+        
+        <Border BorderThickness="1" BorderBrush="Black">
+            <TextBlock x:Name="TebCurReplay" HorizontalAlignment="Left" Margin="395,236,0,0" Padding="5,8,5,5" Text="Nothing Selected!" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="380" FontWeight="Normal" FontStyle="Normal">
 
-        <Label HorizontalAlignment="Right" Height="59" Margin="0,229,25,0" VerticalAlignment="Top" Width="511">
-            <Border
-                BorderBrush="Gray"
-                BorderThickness="1" Height="35">
-                <TextBlock x:Name="TebOsrPath" TextWrapping="WrapWithOverflow" Margin="5, 5, 5, 5"  Padding="2,2,2,2">
-                osr file path
-                </TextBlock>
-            </Border>
-        </Label>
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
+                        <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+
+            </TextBlock>
+        </Border>
     </Grid>
 </Window>
 
