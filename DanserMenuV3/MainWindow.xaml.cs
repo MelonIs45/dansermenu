@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Data.Sqlite;
-using Microsoft.Win32;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 
@@ -68,9 +66,6 @@ namespace DanserMenuV3
                 diffName = CobMaps.SelectedItem.ToString().Split('[')[1].Split(']')[0].Replace("'", "''");
             }
 
-            
-            
-
             using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
             connection.Open();
             var command = connection.CreateCommand();
@@ -98,8 +93,8 @@ namespace DanserMenuV3
                 process.StartInfo = startInfo;
 
                 try
-                {
-                    //process.Start();
+                { 
+                    process.Start();
                 }
                 catch (Win32Exception)
                 {

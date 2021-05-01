@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -76,8 +75,6 @@ namespace DanserMenuV3
             {
                 command += $" - debug";
             }
-            
-            Debug.WriteLine(command);
 
             return command;
         }
