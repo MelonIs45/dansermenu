@@ -76,3 +76,4 @@ D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\FluentWPF.dll
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DanserMenuV3_MarkupCompile.lref
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\App.baml
+D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

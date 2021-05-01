@@ -7,20 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="bg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentWPF" Version="0.9.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms">
-      <HintPath>bin\Debug\netcoreapp3.1\System.Windows.Forms.dll</HintPath>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="WindowsFormsIntegration">
-      <HintPath>bin\Debug\netcoreapp3.1\WindowsFormsIntegration.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>bin\Debug\netcoreapp3.1\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="bg.png" />
   </ItemGroup>
 
 </Project>

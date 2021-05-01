@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+eDKM5vITH3NS6v63FrKwNrHnp8AcaIkpd6NKoUW1LGajwL0itLbJHaKMfQUsBGRBMkeHaLyWKkRV2ITVRYfwA==",
+  "dgSpecHash": "fzSEKhfM1V1Jku73ALzjS3G1ymNfQXu/bU9QkMTWnKhjxpjKSkCGVs6eTCWLhiTJ3GJpQLQZvYnQk0mQYbZjYA==",
   "success": true,
   "projectFilePath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ryanp\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
     "C:\\Users\\ryanp\\.nuget\\packages\\microsoft.data.sqlite\\5.0.5\\microsoft.data.sqlite.5.0.5.nupkg.sha512",
     "C:\\Users\\ryanp\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.5\\microsoft.data.sqlite.core.5.0.5.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",

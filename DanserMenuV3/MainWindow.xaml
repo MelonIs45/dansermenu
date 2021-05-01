@@ -12,18 +12,20 @@
         fw:AcrylicWindow.Enabled="True">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">White</Brush>
+        <Brush x:Key="TextColorLight">Black</Brush>
         <Brush x:Key="TextColorDark">Black</Brush>
     </Window.Resources>
 
-    <Grid Background="#00000000" fw:PointerTracker.Enabled="True">
+    <Grid fw:PointerTracker.Enabled="True">
+        <Grid.Background>
+            <ImageBrush Opacity="0.3" Stretch="UniformToFill" ImageSource="/bg.png"/>
+        </Grid.Background>
         <TextBlock x:Name="TebLabel" HorizontalAlignment="Left" Margin="25,25,0,0" Text="DANSER Menu made by Meloons#8078" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="285" FontSize="16"/>
 
         <TextBlock Text="Search for a map:" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TebSearch" Height="49" Margin="25,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" TextChanged="TebSearch_TextChanged" Style="{StaticResource TextBoxRevealStyle}"/>
 
-        <Button Foreground="{StaticResource TextColorLight}" x:Name="BuRun" Content="RUN" Margin="25,441,25,0" VerticalAlignment="Top" Height="50" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" FontFamily="Lucida Sans" Background="#FFA6A6A6"/>
-        <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
+        <Button Foreground="{StaticResource TextColorLight}" x:Name="BuRun" Content="RUN" Margin="344,22,25,0" VerticalAlignment="Top" Height="29" FontSize="24" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" FontFamily="Lucida Sans" Background="#FFA6A6A6"/>
 
         <TextBlock Text="Pick a map:" HorizontalAlignment="Left" Margin="25,129,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="CobMaps" Margin="25,150,25,0" Padding="5,8,5,8" VerticalAlignment="Top" Height="44" FontSize="20" Style="{StaticResource ComboBoxRevealStyle}">
@@ -35,21 +37,22 @@
         </ComboBox>
 
         <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="29,207,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,0,0,0" VerticalAlignment="Center" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged" Style="{StaticResource ComboBoxRevealStyle}">
+        <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,232,0,0" VerticalAlignment="Top" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged" Style="{StaticResource ComboBoxRevealStyle}" SelectedIndex="0">
+            <ComboBoxItem Content="None"/>
             <ComboBoxItem Content="Knockout"/>
             <ComboBoxItem Content="Play"/>
             <ComboBoxItem Content="Replay"/>
         </ComboBox>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="250,0,0,0" VerticalAlignment="Center" Height="36">
+        <Label Foreground="{StaticResource TextColorLight}" Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="250,232,0,0" VerticalAlignment="Top" Height="36">
         </Label>
 
-        <TextBox x:Name="TebCurReplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="415,0,25,0" Style="{StaticResource TextBoxRevealStyle}" VerticalAlignment="Center" Height="36" TextChanged="TebCurReplay_TextChanged"/>
+        <TextBox x:Name="TebCurReplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="415,232,25,0" Style="{StaticResource TextBoxRevealStyle}" VerticalAlignment="Top" Height="36" TextChanged="TebCurReplay_TextChanged"/>
 
-        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top" Checked="CebRecord_Checked" Unchecked="CebRecord_Unchecked"/>
+        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,290,0,0" VerticalAlignment="Top" Checked="CebRecord_Checked" Unchecked="CebRecord_Unchecked"/>
 
         <Label Foreground="{StaticResource TextColorLight}" Content="Cursors:" HorizontalAlignment="Left" Height="28" Margin="21,323,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="CursorsTextBox" Text="{Binding Value, ElementName=CursorsScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="110,323,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ScrollBar x:Name="CursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="CursorsTextBox" Text="{Binding Value, ElementName=CursorsScrollbar, StringFormat={}{0:#,#}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="110,323,0,0" Width="78" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="CursorsScrollbar" Orientation="Vertical" Minimum="1" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1.05"/>
@@ -61,8 +64,8 @@
         </ScrollBar>
 
         <Label Foreground="{StaticResource TextColorLight}" Content="Tag Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,369,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="TagCursorsTextBox" Text="{Binding Value, ElementName=TagCursorsScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="36" Margin="110,369,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ScrollBar x:Name="TagCursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="TagCursorsTextBox" Text="{Binding Value, ElementName=TagCursorsScrollbar, StringFormat={}{0:#,#}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="36" Margin="110,369,0,0" Width="78" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="TagCursorsScrollbar" Orientation="Vertical" Minimum="1" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1.05"/>
@@ -74,8 +77,8 @@
         </ScrollBar>
 
         <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="220,323,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="SpeedTextBox" Text="{Binding Value, ElementName=SpeedScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="280,323,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ScrollBar x:Name="SpeedScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <TextBox PreviewTextInput="DecimalValidationTextBox" x:Name="SpeedTextBox" Text="{Binding Value, ElementName=SpeedScrollbar, StringFormat={}{0:#,#.0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="280,323,0,0" Width="78" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="SpeedScrollbar" Orientation="Vertical" Minimum="0.1" Maximum="10" BorderBrush="{x:Null}" SmallChange="0.1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Value="1" >
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1.05"/>
@@ -87,8 +90,8 @@
         </ScrollBar>
 
         <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="220,369,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="PitchTextBox" Text="{Binding Value, ElementName=PitchScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="2" VerticalContentAlignment="Center" FontSize="16" Margin="280,369,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <ScrollBar x:Name="PitchScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <TextBox PreviewTextInput="DecimalValidationTextBox" x:Name="PitchTextBox" Text="{Binding Value, ElementName=PitchScrollbar, StringFormat={}{0:#,#.0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="2" VerticalContentAlignment="Center" FontSize="16" Margin="280,369,0,0" Width="78" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="PitchScrollbar" Orientation="Vertical" Minimum="0.1" Maximum="10" BorderBrush="{x:Null}" SmallChange="0.1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Value="1" >
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1.05"/>
@@ -99,15 +102,20 @@
             </ScrollBar.RenderTransform>
         </ScrollBar>
 
-        <Label Foreground="{StaticResource TextColorLight}" Content="Custom File Name:" HorizontalAlignment="Left" Height="27" Margin="102,283,0,0" VerticalAlignment="Top" Width="118"/>
-        <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="21" Margin="225,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Custom File Name:" HorizontalAlignment="Left" Height="27" Margin="102,284,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="37" Margin="225,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False" Style="{StaticResource TextBoxRevealStyle}"/>
         <Label Foreground="{StaticResource TextColorLight}" x:Name="LabExt" Content="" HorizontalAlignment="Left" Height="26" Margin="415,284,0,0" VerticalAlignment="Top" Width="71"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="595,286,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox HorizontalAlignment="Right" Height="36" Margin="659,286,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"  Style="{StaticResource TextBoxRevealStyle}" FontSize="16"/>
-        <Slider HorizontalAlignment="Left" Height="23" Margin="415,335,0,0" VerticalAlignment="Top" Width="360"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Start Time:" HorizontalAlignment="Left" Height="25" Margin="415,305,0,0" VerticalAlignment="Top" Width="71"/>
-        <Slider HorizontalAlignment="Left" Height="23" Margin="415,381,0,0" VerticalAlignment="Top" Width="360" Value="100"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="End Time:" HorizontalAlignment="Left" Height="25" Margin="415,351,0,0" VerticalAlignment="Top" Width="71"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="595,307,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="TebMods" HorizontalAlignment="Right" Height="36" Margin="0,307,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Style="{StaticResource TextBoxRevealStyle}" FontSize="16"/>
+        <Slider x:Name="SliStartTime" HorizontalAlignment="Left" Height="23" Margin="415,360,0,0" VerticalAlignment="Top" Width="360"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Start Time:" HorizontalAlignment="Left" Height="25" Margin="415,330,0,0" VerticalAlignment="Top" Width="71"/>
+        <Slider x:Name="SliEndTime" HorizontalAlignment="Left" Height="23" Margin="415,406,0,0" VerticalAlignment="Top" Width="360" Value="100"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="End Time:" HorizontalAlignment="Left" Height="25" Margin="415,376,0,0" VerticalAlignment="Top" Width="71"/>
+        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="ChkSkip" Content="Skip" HorizontalAlignment="Left" Margin="429,443,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Skin: " HorizontalAlignment="Left" Height="24" Margin="20,411,0,0" VerticalAlignment="Top" Width="43"/>
+        <Button x:Name="BtnSkinBrowse" Foreground="{StaticResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="22" Margin="25,449,0,0" VerticalAlignment="Top" Width="66" Style="{StaticResource ButtonRevealStyle}" Click="BtnSkinBrowse_Click"/>
+        <TextBox Foreground="{StaticResource TextColorLight}" x:Name="TebSkinName" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" Margin="110,439,0,0" VerticalAlignment="Top" Width="300" Style="{StaticResource TextBoxRevealStyle}" TextChanged="TebSkinName_TextChanged"/>
+        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="ChkDebug" Content="Debug" HorizontalAlignment="Left" Height="22" Margin="498,443,0,0" VerticalAlignment="Top" Width="80"/>
 
     </Grid>
 </Window>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

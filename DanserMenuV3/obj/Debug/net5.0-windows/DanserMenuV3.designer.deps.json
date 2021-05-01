@@ -6,6 +6,14 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+      "FluentWPF/0.9.0": {
+        "runtime": {
+          "lib/netcoreapp3.0/FluentWPF.dll": {
+            "assemblyVersion": "0.9.0.1",
+            "fileVersion": "0.9.0.1"
+          }
+        }
+      },
       "Microsoft.Data.Sqlite/5.0.5": {
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": "5.0.5",
@@ -135,6 +143,13 @@
     }
   },
   "libraries": {
+    "FluentWPF/0.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h8AUlCSOg11477H6fRSM30mxqdX3/ETu1Ksso2fuLrCD7rHK2TZPma2SuQHMcidsFq5GJZe1BkKbPdkKoTeAUQ==",
+      "path": "fluentwpf/0.9.0",
+      "hashPath": "fluentwpf.0.9.0.nupkg.sha512"
+    },
     "Microsoft.Data.Sqlite/5.0.5": {
       "type": "package",
       "serviceable": true,

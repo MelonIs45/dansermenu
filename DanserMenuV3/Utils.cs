@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -21,6 +23,95 @@ namespace DanserMenuV3
                 1);
 
             return new Size((int)formattedText.Width, (int)formattedText.Height);
+        }
+
+        public string FormatCommands(MainWindow mainWindow, string md5)
+        {
+            var command = "";
+
+            if (md5.Length > 0)
+            {
+                command += $" -md5={md5}";
+            }
+
+            if (mainWindow.CobMode.Text.ToLower() == "replay")
+            {
+                command += $" -replay=\"{mainWindow.TebCurReplay.Text}\"";
+            }
+            else
+            {
+                command += $" -{mainWindow.CobMode.Text.ToLower()}";
+            }
+
+            command += FormatNumberArgs(mainWindow);
+
+            if (mainWindow.CebRecord.IsChecked == true && mainWindow.CobMode.Text.ToLower() != "play")
+            {
+                if (mainWindow.TebOutName.Text != "")
+                {
+                    command += $" -out=\"{mainWindow.TebOutName.Text}\"";
+                }
+                else
+                {
+                    command += $" -record";
+                }
+            }
+
+            if (mainWindow.TebMods.Text.Length > 0)
+            {
+                command += $" -mods={mainWindow.TebMods.Text}";
+            }
+
+            if (mainWindow.ChkSkip.IsChecked == true)
+            {
+                command += $" -skip";
+            }
+
+            if (mainWindow.TebSkinName.Text != "")
+            {
+                command += $" -skin=\"{mainWindow.TebSkinName.Text}\"";
+            }
+
+            if (mainWindow.ChkDebug.IsChecked == true)
+            {
+                command += $" - debug";
+            }
+            
+            Debug.WriteLine(command);
+
+            return command;
+        }
+
+        public string FormatNumberArgs(MainWindow mainWindow)
+        {
+            var numberArgs = "";
+
+            if (Convert.ToInt32(mainWindow.CursorsTextBox.Text) != 1)
+            {
+                numberArgs += $" -cursors={Convert.ToInt32(mainWindow.CursorsTextBox.Text)}";
+            }
+            if (Convert.ToInt32(mainWindow.TagCursorsTextBox.Text) != 1)
+            {
+                numberArgs += $" -tag={Convert.ToInt32(mainWindow.TagCursorsTextBox.Text)}";
+            }
+
+            if (Convert.ToDouble(mainWindow.SpeedTextBox.Text) != 1)
+            {
+                if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                {
+                    numberArgs += $" -speed={Convert.ToDouble(mainWindow.SpeedTextBox.Text)}";
+                }
+            }
+
+            if (Convert.ToDouble(mainWindow.PitchTextBox.Text) != 1)
+            {
+                if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                {
+                    numberArgs += $" -pitch={Convert.ToDouble(mainWindow.PitchTextBox.Text)}";
+                }
+            }
+
+            return numberArgs;
         }
     }
 }

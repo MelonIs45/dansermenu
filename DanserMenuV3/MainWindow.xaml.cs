@@ -1,11 +1,17 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.Data.Sqlite;
 using Microsoft.Win32;
+using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace DanserMenuV3
 {
@@ -17,6 +23,8 @@ namespace DanserMenuV3
         public MainWindow()
         {
             InitializeComponent();
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+            LabExt.Content = $".{settingsJson["Recording"]["Container"]}";
         }
 
         private void TebSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -51,8 +59,17 @@ namespace DanserMenuV3
 
         private void BuRun_Click(object sender, RoutedEventArgs e)
         {
-            var mapName = CobMaps.SelectedItem.ToString().Split('[')[0].Replace("'", "''").Trim();
-            var diffName = CobMaps.SelectedItem.ToString().Split('[')[1].Split(']')[0].Replace("'", "''");
+            var mapName = "";
+            var diffName = "";
+            var utils = new Utils();
+
+            if (CobMaps.Items.Count != 0) {
+                mapName = CobMaps.SelectedItem.ToString().Split('[')[0].Replace("'", "''").Trim();
+                diffName = CobMaps.SelectedItem.ToString().Split('[')[1].Split(']')[0].Replace("'", "''");
+            }
+
+            
+            
 
             using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
             connection.Open();
@@ -76,20 +93,18 @@ namespace DanserMenuV3
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = "danser.exe",
-                    Arguments = $"-md5={md5}"
+                    Arguments = $"{utils.FormatCommands(this, md5)}"
                 };
                 process.StartInfo = startInfo;
 
                 try
                 {
-                    process.Start();
+                    //process.Start();
                 }
                 catch (Win32Exception)
                 {
-                    MessageBox.Show("danser.exe not found in the same directory as the program!");
+                    System.Windows.MessageBox.Show("danser.exe not found in the same directory as the program!");
                 }
-
-                TebMd5.Text = $"Command: {startInfo.Arguments}";
             }
         }
 
@@ -108,7 +123,7 @@ namespace DanserMenuV3
                     break;
                 case "Replay":
                     Debug.WriteLine("TEST");
-                    var replayFileDialog = new OpenFileDialog
+                    var replayFileDialog = new Microsoft.Win32.OpenFileDialog
                     {
                         Filter = "osr files (*.osr)|*.osr",
                         Title = "Open osr file"
@@ -117,7 +132,7 @@ namespace DanserMenuV3
 
                     if (result == true)
                     {
-                        var filename = replayFileDialog.SafeFileName;
+                        var filename = replayFileDialog.FileName;
                         TebCurReplay.Text = filename;
 
                         TebCurReplay.Height = 50;
@@ -151,6 +166,47 @@ namespace DanserMenuV3
             {
                 TebOutName.IsEnabled = false;
             }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        
+        private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void BtnSkinBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            var utils = new Utils();
+            var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+
+            var skinFolderDialog = new FolderBrowserDialog()
+            {
+                SelectedPath = settingsJson["General"]["OsuSkinsDir"].ToString(),
+            };
+            var result = skinFolderDialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                TebSkinName.Text = skinFolderDialog.SelectedPath.Split(new char[] { '\\' }).Last();
+
+                TebCurReplay.Height = 50;
+
+                if (utils.MeasureString(TebSkinName).Width < TebSkinName.ActualWidth)
+                    TebCurReplay.Height = 36;
+            }
+        }
+
+        private void TebSkinName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utils = new Utils();
+            TebSkinName.Height = 50;
+            if (utils.MeasureString(TebSkinName).Width < TebSkinName.ActualWidth) TebSkinName.Height = 36;
         }
     }
 }
