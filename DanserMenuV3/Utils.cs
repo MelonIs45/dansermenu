@@ -79,9 +79,14 @@ namespace DanserMenuV3
                 command += $" -debug";
             }
 
-            using (var logFile = new StreamWriter("menu.log"))
+            using (var logFile = new StreamWriter("menu.log", true))
             {
+                logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                 logFile.WriteLine($"Command ran using: {command}");
+                logFile.WriteLine("#######################");
+                logFile.WriteLine();
+
+                logFile.Close();
             }
             return command;
         }
@@ -122,9 +127,14 @@ namespace DanserMenuV3
             
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log"))
+                using (var logFile = new StreamWriter("menu.log", true))
                 {
+                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                     logFile.WriteLine($"Error: {ex}");
+                    logFile.WriteLine("#######################");
+                    logFile.WriteLine();
+
+                    logFile.Close();
                 }
 
                 return "";

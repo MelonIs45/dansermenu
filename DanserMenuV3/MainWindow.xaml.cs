@@ -24,8 +24,15 @@ namespace DanserMenuV3
 
             if (File.Exists($@"{Directory.GetCurrentDirectory()}\menu.log"))
             {
+                File.Delete("menu.log");
                 File.Create("menu.log");
             }
+
+            if (!File.Exists($@"{Directory.GetCurrentDirectory()}\menu.log"))
+            {
+                File.Create("menu.log");
+            }
+            
         }
 
         private void TebSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -61,9 +68,14 @@ namespace DanserMenuV3
             }
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log"))
+                using (var logFile = new StreamWriter("menu.log", true))
                 {
+                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                     logFile.WriteLine($"Error: {ex}");
+                    logFile.WriteLine("#######################");
+                    logFile.WriteLine();
+
+                    logFile.Close();
                 }
             }
             
@@ -121,9 +133,14 @@ namespace DanserMenuV3
             }
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log"))
+                using (var logFile = new StreamWriter("menu.log", true))
                 {
+                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                     logFile.WriteLine($"Error: {ex}");
+                    logFile.WriteLine("#######################");
+                    logFile.WriteLine();
+
+                    logFile.Close();
                 }
             }
         }
@@ -166,9 +183,14 @@ namespace DanserMenuV3
             }
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log"))
+                using (var logFile = new StreamWriter("menu.log", true))
                 {
+                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                     logFile.WriteLine($"Error: {ex}");
+                    logFile.WriteLine("#######################");
+                    logFile.WriteLine();
+
+                    logFile.Close();
                 }
             }
 
@@ -241,9 +263,14 @@ namespace DanserMenuV3
             }
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log"))
+                using (var logFile = new StreamWriter("menu.log", true))
                 {
+                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
                     logFile.WriteLine($"Error: {ex}");
+                    logFile.WriteLine("#######################");
+                    logFile.WriteLine();
+
+                    logFile.Close();
                 }
             }
         }
