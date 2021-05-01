@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj": {}
+    "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj": {}
   },
   "projects": {
-    "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj": {
+    "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+        "projectUniqueName": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
         "projectName": "DanserMenuV3",
-        "projectPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
-        "packagesPath": "C:\\Users\\18u-rpietras\\.nuget\\packages\\",
-        "outputPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\obj\\",
+        "projectPath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+        "packagesPath": "C:\\Users\\ryanp\\.nuget\\packages\\",
+        "outputPath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "D:\\Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\18u-rpietras\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\ryanp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,7 +42,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "FluentWPF": {
+              "target": "Package",
+              "version": "[0.9.0, )"
+            },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[5.0.5, )"
@@ -65,7 +71,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

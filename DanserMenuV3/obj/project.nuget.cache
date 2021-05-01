@@ -1,16 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "8gAq5MuN2+OtFwAnqIPAOreAkOZR4r5llwgH3EWiHEuiVsG9gplMTAjv1LPl0V1rxVDKnnVNfnV6O2sHjB7xGw==",
+  "dgSpecHash": "+eDKM5vITH3NS6v63FrKwNrHnp8AcaIkpd6NKoUW1LGajwL0itLbJHaKMfQUsBGRBMkeHaLyWKkRV2ITVRYfwA==",
   "success": true,
-  "projectFilePath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+  "projectFilePath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\microsoft.data.sqlite\\5.0.5\\microsoft.data.sqlite.5.0.5.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.5\\microsoft.data.sqlite.core.5.0.5.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\ryanp\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\microsoft.data.sqlite\\5.0.5\\microsoft.data.sqlite.5.0.5.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.5\\microsoft.data.sqlite.core.5.0.5.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
+    "C:\\Users\\ryanp\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
   ],
   "logs": []
 }

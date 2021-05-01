@@ -3,38 +3,60 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DanserMenuV3"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="512" Width="800">
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
 
-    <Grid>
+        mc:Ignorable="d"
+        Title="DANSER Menu" Height="512" Width="800"
+        ResizeMode="NoResize"
+        fw:AcrylicWindow.Enabled="True">
+
+    <Window.Resources>
+        <Brush x:Key="TextColorLight">White</Brush>
+        <Brush x:Key="TextColorDark">Black</Brush>
+    </Window.Resources>
+
+    <Grid Background="#00000000" fw:PointerTracker.Enabled="True">
         <TextBlock x:Name="TebLabel" HorizontalAlignment="Left" Margin="25,25,0,0" Text="DANSER Menu made by Meloons#8078" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="285" FontSize="16"/>
 
         <TextBlock Text="Search for a map:" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TebSearch" HorizontalAlignment="Stretch" Height="37" Margin="25,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" TextChanged="TebSearch_TextChanged"/>
+        <TextBox x:Name="TebSearch" Height="49" Margin="25,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" TextChanged="TebSearch_TextChanged" Style="{StaticResource TextBoxRevealStyle}"/>
 
-        <Button x:Name="BuRun" Content="RUN" Margin="132,0,132,25" VerticalAlignment="Bottom" Height="54" FontSize="36" Click="BuRun_Click"/>
-        <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
+        <Button x:Name="BuRun" Content="RUN" Margin="198,417,198,0" VerticalAlignment="Top" Height="54" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}"/>
+        <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
 
         <TextBlock Text="Pick a map:" HorizontalAlignment="Left" Margin="25,129,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CobMaps" Margin="25,150,25,0" Padding="5,8,5,8" VerticalAlignment="Top" Height="44" FontSize="20"/>
+        <ComboBox x:Name="CobMaps" Margin="25,150,25,0" Padding="5,8,5,8" VerticalAlignment="Top" Height="44" FontSize="20" Style="{StaticResource ComboBoxRevealStyle}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
 
-        <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="25,215,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,236,0,0" VerticalAlignment="Top" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged">
+        <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="25,204,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,0,0,0" VerticalAlignment="Center" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged" Style="{StaticResource ComboBoxRevealStyle}">
             <ComboBoxItem Content="Knockout"/>
             <ComboBoxItem Content="Play"/>
             <ComboBoxItem Content="Replay"/>
         </ComboBox>
-        <Label Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="230,236,0,0" VerticalAlignment="Top" Height="36"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="250,0,0,0" VerticalAlignment="Center" Height="36">
+        </Label>
 
-        <TextBlock x:Name="TebCurReplay" HorizontalAlignment="Right" Margin="0,236,25,0" Padding="5,3,3,5" Text="Nothing Selected!" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="375" FontWeight="Normal" FontStyle="Normal">
-            <TextBlock.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
-                    <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBlock.Background>
-        </TextBlock>
-        <Border BorderThickness="1" BorderBrush="#FFACACAC" Margin="0,236,25,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="36" Width="375" />
+        <TextBox x:Name="TebCurReplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="415,0,25,0" Style="{StaticResource TextBoxRevealStyle}" VerticalAlignment="Center" Height="36" TextChanged="TebCurReplay_TextChanged"/>
+
+        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top"/>
+
+        <Label Foreground="{StaticResource TextColorLight}" Content="Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,312,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Tag Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,345,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="20,378,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="20,412,0,0" VerticalAlignment="Top" Width="76"/>
+
+        <Label Foreground="{StaticResource TextColorLight}" Content="Custom File Name:" HorizontalAlignment="Left" Height="27" Margin="102,283,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="21" Margin="225,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
+        <Label Foreground="{StaticResource TextColorLight}" x:Name="LabExt" Content="" HorizontalAlignment="Left" Height="26" Margin="405,284,0,0" VerticalAlignment="Top" Width="71"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="21,440,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="96,444,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"/>
+
     </Grid>
 </Window>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using Microsoft.Data.Sqlite;
 using Microsoft.Win32;
 
@@ -21,9 +19,10 @@ namespace DanserMenuV3
 
         private void TebSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CobMaps.Items.Clear();
-            using (var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db"))
+            if (TebSearch.Text.Length > 3)
             {
+                CobMaps.Items.Clear();
+                using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText =
@@ -35,16 +34,15 @@ namespace DanserMenuV3
                     AND mode = 0
                 ";
 
-                using (var reader = command.ExecuteReader())
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        var name = $"{reader.GetString(3)} [{reader.GetString(8)}]";
+                    var name = $"{reader.GetString(3)} [{reader.GetString(8)}]";
 
-                        CobMaps.Items.Add(name);
-                    }
+                    CobMaps.Items.Add(name);
                 }
             }
+            
         }
 
         private void BuRun_Click(object sender, RoutedEventArgs e)
@@ -92,6 +90,7 @@ namespace DanserMenuV3
 
         private void CobMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var utils = new Utils();
             var selectedItem = (ComboBoxItem) CobMode.SelectedItem;
             Debug.WriteLine(selectedItem.Content.ToString());
             switch (selectedItem.Content.ToString())
@@ -116,8 +115,25 @@ namespace DanserMenuV3
                         // Open document 
                         var filename = replayFileDialog.SafeFileName;
                         TebCurReplay.Text = filename;
+
+                        TebCurReplay.Height = 50;
+
+                        if (utils.MeasureString(TebCurReplay).Width < TebCurReplay.ActualWidth)
+                        {
+                            TebCurReplay.Height = 36;
+                        }
                     }
                     break;
+            }
+        }
+
+        private void TebCurReplay_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utils = new Utils();
+            TebCurReplay.Height = 50;
+            if (utils.MeasureString(TebCurReplay).Width < TebCurReplay.ActualWidth)
+            {
+                TebCurReplay.Height = 36;
             }
         }
     }

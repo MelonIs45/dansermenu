@@ -7,7 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentWPF" Version="0.9.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>bin\Debug\netcoreapp3.1\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <HintPath>bin\Debug\netcoreapp3.1\WindowsFormsIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>bin\Debug\netcoreapp3.1\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

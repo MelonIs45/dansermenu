@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "FluentWPF/0.9.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/FluentWPF.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/FluentWPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "Microsoft.Data.Sqlite/5.0.5": {
         "type": "package",
         "dependencies": {
@@ -142,6 +154,20 @@
     }
   },
   "libraries": {
+    "FluentWPF/0.9.0": {
+      "sha512": "h8AUlCSOg11477H6fRSM30mxqdX3/ETu1Ksso2fuLrCD7rHK2TZPma2SuQHMcidsFq5GJZe1BkKbPdkKoTeAUQ==",
+      "type": "package",
+      "path": "fluentwpf/0.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "fluentwpf.0.9.0.nupkg.sha512",
+        "fluentwpf.nuspec",
+        "lib/net45/FluentWPF.dll",
+        "lib/netcoreapp3.0/FluentWPF.dll"
+      ]
+    },
     "Microsoft.Data.Sqlite/5.0.5": {
       "sha512": "zTeCkFsBHZ1/iBd0GqyAUrtb3xuaiUeJyhd9hjuW9yo/ylRhWqxORKznR0bR1g/joUTohGTHAXr/KIuSNyjH/Q==",
       "type": "package",
@@ -266,29 +292,30 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "FluentWPF >= 0.9.0",
       "Microsoft.Data.Sqlite >= 5.0.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\18u-rpietras\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\ryanp\\.nuget\\packages\\": {},
+    "D:\\Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+      "projectUniqueName": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
       "projectName": "DanserMenuV3",
-      "projectPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
-      "packagesPath": "C:\\Users\\18u-rpietras\\.nuget\\packages\\",
-      "outputPath": "\\\\pfa.education\\utccstudentusers$\\18u-rpietras\\Documents\\github.com\\MelonIs45\\dansermenu\\DanserMenuV3\\obj\\",
+      "projectPath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\DanserMenuV3.csproj",
+      "packagesPath": "C:\\Users\\ryanp\\.nuget\\packages\\",
+      "outputPath": "D:\\github.com\\melonis45\\dansermenu\\dansermenu\\DanserMenuV3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "D:\\Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\18u-rpietras\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\ryanp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -299,6 +326,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -310,7 +338,12 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "FluentWPF": {
+            "target": "Package",
+            "version": "[0.9.0, )"
+          },
           "Microsoft.Data.Sqlite": {
             "target": "Package",
             "version": "[5.0.5, )"
@@ -334,7 +367,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
