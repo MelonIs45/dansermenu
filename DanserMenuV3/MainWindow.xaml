@@ -12,8 +12,7 @@
         fw:AcrylicWindow.Enabled="True">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">Black</Brush>
-        <Brush x:Key="TextColorDark">Black</Brush>
+        <Brush x:Key="TextColorLight">White</Brush>
     </Window.Resources>
 
     <Grid fw:PointerTracker.Enabled="True">

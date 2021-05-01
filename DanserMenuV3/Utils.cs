@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -39,6 +41,7 @@ namespace DanserMenuV3
             }
             else
             {
+                if (mainWindow.CobMode.Text.ToLower() != "none")
                 command += $" -{mainWindow.CobMode.Text.ToLower()}";
             }
 
@@ -58,7 +61,7 @@ namespace DanserMenuV3
 
             if (mainWindow.TebMods.Text.Length > 0)
             {
-                command += $" -mods={mainWindow.TebMods.Text}";
+                command += $" -mods=\"{mainWindow.TebMods.Text}\"";
             }
 
             if (mainWindow.ChkSkip.IsChecked == true)
@@ -73,42 +76,59 @@ namespace DanserMenuV3
 
             if (mainWindow.ChkDebug.IsChecked == true)
             {
-                command += $" - debug";
+                command += $" -debug";
             }
 
+            using (var logFile = new StreamWriter("menu.log"))
+            {
+                logFile.WriteLine($"Command ran using: {command}");
+            }
             return command;
         }
 
         public string FormatNumberArgs(MainWindow mainWindow)
         {
-            var numberArgs = "";
+            try
+            {
+                var numberArgs = "";
 
-            if (Convert.ToInt32(mainWindow.CursorsTextBox.Text) != 1)
-            {
-                numberArgs += $" -cursors={Convert.ToInt32(mainWindow.CursorsTextBox.Text)}";
-            }
-            if (Convert.ToInt32(mainWindow.TagCursorsTextBox.Text) != 1)
-            {
-                numberArgs += $" -tag={Convert.ToInt32(mainWindow.TagCursorsTextBox.Text)}";
-            }
-
-            if (Convert.ToDouble(mainWindow.SpeedTextBox.Text) != 1)
-            {
-                if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                if (Convert.ToInt32(mainWindow.CursorsTextBox.Text) != 1)
                 {
-                    numberArgs += $" -speed={Convert.ToDouble(mainWindow.SpeedTextBox.Text)}";
+                    numberArgs += $" -cursors={Convert.ToInt32(mainWindow.CursorsTextBox.Text)}";
                 }
-            }
-
-            if (Convert.ToDouble(mainWindow.PitchTextBox.Text) != 1)
-            {
-                if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                if (Convert.ToInt32(mainWindow.TagCursorsTextBox.Text) != 1)
                 {
-                    numberArgs += $" -pitch={Convert.ToDouble(mainWindow.PitchTextBox.Text)}";
+                    numberArgs += $" -tag={Convert.ToInt32(mainWindow.TagCursorsTextBox.Text)}";
                 }
-            }
 
-            return numberArgs;
+                if (Convert.ToDouble(mainWindow.SpeedTextBox.Text) != 1)
+                {
+                    if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                    {
+                        numberArgs += $" -speed={Convert.ToDouble(mainWindow.SpeedTextBox.Text)}";
+                    }
+                }
+
+                if (Convert.ToDouble(mainWindow.PitchTextBox.Text) != 1)
+                {
+                    if (!(mainWindow.TebMods.Text.Contains("HT") || mainWindow.TebMods.Text.Contains("DT") || mainWindow.TebMods.Text.Contains("NC")))
+                    {
+                        numberArgs += $" -pitch={Convert.ToDouble(mainWindow.PitchTextBox.Text)}";
+                    }
+                }
+
+                return numberArgs;
+            }
+            
+            catch (Exception ex)
+            {
+                using (var logFile = new StreamWriter("menu.log"))
+                {
+                    logFile.WriteLine($"Error: {ex}");
+                }
+
+                return "";
+            }
         }
     }
 }
