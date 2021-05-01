@@ -1,0 +1,69 @@
+2021/05/01 19:31:49 Ran using: [danser.exe -md5=abe7a1681b5adb1ce6d881555afe0d5f -mods=3242354 -skin=- #JesusOmega {HOLY FUCK}-20210320T201008Z-001]
+2021/05/01 19:31:49 Starting danser version 0.5.0
+2021/05/01 19:31:49 Checking GitHub for a new version of danser...
+2021/05/01 19:31:49 You're using the newest version of danser.
+2021/05/01 19:31:49 panic: runtime error: index out of range [3] with length 3
+2021/05/01 19:31:49 goroutine 1 [running, locked to thread]:
+2021/05/01 19:31:49 github.com/wieku/danser-go/app/beatmap/difficulty.ParseMods(0xc000018116, 0x7, 0x3)
+2021/05/01 19:31:49 	D:/danser-go/app/beatmap/difficulty/mods.go:207 +0x365
+2021/05/01 19:31:49 main.run.func1()
+2021/05/01 19:31:49 	D:/danser-go/main.go:131 +0xa59
+2021/05/01 19:31:49 github.com/faiface/mainthread.Call.func1()
+2021/05/01 19:31:49 	C:/Users/Wieku/go/pkg/mod/github.com/faiface/mainthread@v0.0.0-20171120011319-8b78f0a41ae3/mainthread.go:63 +0x36
+2021/05/01 19:31:49 github.com/faiface/mainthread.Run(0x7ff7030c0020)
+2021/05/01 19:31:49 	C:/Users/Wieku/go/pkg/mod/github.com/faiface/mainthread@v0.0.0-20171120011319-8b78f0a41ae3/mainthread.go:44 +0xb7
+2021/05/01 19:31:49 main.main()
+2021/05/01 19:31:49 	D:/danser-go/main.go:737 +0x23a
+2021/05/01 19:31:49 
+2021/05/01 19:31:49 goroutine 34 [chan receive]:
+2021/05/01 19:31:49 github.com/faiface/mainthread.Call(0x7ff7030c0018)
+2021/05/01 19:31:49 	C:/Users/Wieku/go/pkg/mod/github.com/faiface/mainthread@v0.0.0-20171120011319-8b78f0a41ae3/mainthread.go:66 +0xca
+2021/05/01 19:31:49 main.run()
+2021/05/01 19:31:49 	D:/danser-go/main.go:75 +0x34
+2021/05/01 19:31:49 github.com/faiface/mainthread.Run.func1(0x7ff7030c0020, 0xc0002c2000)
+2021/05/01 19:31:49 	C:/Users/Wieku/go/pkg/mod/github.com/faiface/mainthread@v0.0.0-20171120011319-8b78f0a41ae3/mainthread.go:37 +0x2e
+2021/05/01 19:31:49 created by github.com/faiface/mainthread.Run
+2021/05/01 19:31:49 	C:/Users/Wieku/go/pkg/mod/github.com/faiface/mainthread@v0.0.0-20171120011319-8b78f0a41ae3/mainthread.go:36 +0xab
+2021/05/01 19:31:49 
+2021/05/01 19:31:49 goroutine 9 [IO wait]:
+2021/05/01 19:31:49 internal/poll.runtime_pollWait(0x2836a844e88, 0x72, 0x7ff70313dfa0)
+2021/05/01 19:31:49 	c:/go/src/runtime/netpoll.go:222 +0x65
+2021/05/01 19:31:49 internal/poll.(*pollDesc).wait(0xc00012e1b8, 0x72, 0x7ff702f5d300, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+2021/05/01 19:31:49 internal/poll.execIO(0xc00012e018, 0x7ff7030bff18, 0x949136f3a346b101, 0x4c787206ac6ef4a4, 0x949136f3a346b1c4)
+2021/05/01 19:31:49 	c:/go/src/internal/poll/fd_windows.go:175 +0x113
+2021/05/01 19:31:49 internal/poll.(*FD).Read(0xc00012e000, 0xc000208000, 0xe03, 0xe03, 0x0, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/internal/poll/fd_windows.go:441 +0x2f6
+2021/05/01 19:31:49 net.(*netFD).Read(0xc00012e000, 0xc000208000, 0xe03, 0xe03, 0xc000208005, 0xc00006ef18, 0xc000207828)
+2021/05/01 19:31:49 	c:/go/src/net/fd_posix.go:55 +0x56
+2021/05/01 19:31:49 net.(*conn).Read(0xc0000060f0, 0xc000208000, 0xe03, 0xe03, 0x0, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/net/net.go:183 +0x98
+2021/05/01 19:31:49 crypto/tls.(*atLeastReader).Read(0xc00028c048, 0xc000208000, 0xe03, 0xe03, 0xc0002078c8, 0xc00005a800, 0x0)
+2021/05/01 19:31:49 	c:/go/src/crypto/tls/conn.go:776 +0x6a
+2021/05/01 19:31:49 bytes.(*Buffer).ReadFrom(0xc000075778, 0x7ff70313cd00, 0xc00028c048, 0x7ff70297d2ec, 0x7ff7030185a0, 0x7ff703079380)
+2021/05/01 19:31:49 	c:/go/src/bytes/buffer.go:204 +0xbe
+2021/05/01 19:31:49 crypto/tls.(*Conn).readFromUntil(0xc000075500, 0x2836a807158, 0xc0000060f0, 0x5, 0xc0000060f0, 0x400)
+2021/05/01 19:31:49 	c:/go/src/crypto/tls/conn.go:798 +0xf3
+2021/05/01 19:31:49 crypto/tls.(*Conn).readRecordOrCCS(0xc000075500, 0x0, 0x0, 0x7ff702dbe265)
+2021/05/01 19:31:49 	c:/go/src/crypto/tls/conn.go:605 +0x12d
+2021/05/01 19:31:49 crypto/tls.(*Conn).readRecord(...)
+2021/05/01 19:31:49 	c:/go/src/crypto/tls/conn.go:573
+2021/05/01 19:31:49 crypto/tls.(*Conn).Read(0xc000075500, 0xc000236000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/crypto/tls/conn.go:1276 +0x173
+2021/05/01 19:31:49 bufio.(*Reader).Read(0xc0002307e0, 0xc00020e578, 0x9, 0x9, 0x7ff702d84c8b, 0xc000207c78, 0x7ff7029789eb)
+2021/05/01 19:31:49 	c:/go/src/bufio/bufio.go:227 +0x238
+2021/05/01 19:31:49 io.ReadAtLeast(0x7ff70313cbe0, 0xc0002307e0, 0xc00020e578, 0x9, 0x9, 0x9, 0xc000294000, 0x2ce5469cd70f00, 0xc000294000)
+2021/05/01 19:31:49 	c:/go/src/io/io.go:328 +0x8e
+2021/05/01 19:31:49 io.ReadFull(...)
+2021/05/01 19:31:49 	c:/go/src/io/io.go:347
+2021/05/01 19:31:49 net/http.http2readFrameHeader(0xc00020e578, 0x9, 0x9, 0x7ff70313cbe0, 0xc0002307e0, 0x0, 0x7ff700000000, 0xc00028e030, 0x0)
+2021/05/01 19:31:49 	c:/go/src/net/http/h2_bundle.go:1477 +0x8e
+2021/05/01 19:31:49 net/http.(*http2Framer).ReadFrame(0xc00020e540, 0xc00028e030, 0x0, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/net/http/h2_bundle.go:1735 +0xa8
+2021/05/01 19:31:49 net/http.(*http2clientConnReadLoop).run(0xc000207fa8, 0x0, 0x0)
+2021/05/01 19:31:49 	c:/go/src/net/http/h2_bundle.go:8322 +0xe7
+2021/05/01 19:31:49 net/http.(*http2ClientConn).readLoop(0xc000051680)
+2021/05/01 19:31:49 	c:/go/src/net/http/h2_bundle.go:8244 +0x76
+2021/05/01 19:31:49 created by net/http.(*http2Transport).newClientConn
+2021/05/01 19:31:49 	c:/go/src/net/http/h2_bundle.go:7208 +0x6c5
+2021/05/01 19:31:49 

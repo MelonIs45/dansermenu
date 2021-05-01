@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanserMenuV3", "DanserMenuV3\DanserMenuV3.csproj", "{561CA941-219A-4A3E-97EA-BBD1FD7A1089}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{561CA941-219A-4A3E-97EA-BBD1FD7A1089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561CA941-219A-4A3E-97EA-BBD1FD7A1089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561CA941-219A-4A3E-97EA-BBD1FD7A1089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561CA941-219A-4A3E-97EA-BBD1FD7A1089}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19E9AABB-28E4-4F77-A426-E29E606A3787}
+	EndGlobalSection
+EndGlobal
