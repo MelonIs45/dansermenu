@@ -7,12 +7,12 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
 
         mc:Ignorable="d"
-        Title="DANSER Menu" Height="512" Width="800"
+        Title="DANSER Menu" Height="532" Width="800"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">White</Brush>
+        <Brush x:Key="TextColorLight">Black</Brush>
         <Brush x:Key="TextColorDark">Black</Brush>
     </Window.Resources>
 
@@ -22,7 +22,7 @@
         <TextBlock Text="Search for a map:" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TebSearch" Height="49" Margin="25,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" TextChanged="TebSearch_TextChanged" Style="{StaticResource TextBoxRevealStyle}"/>
 
-        <Button x:Name="BuRun" Content="RUN" Margin="198,417,198,0" VerticalAlignment="Top" Height="54" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}"/>
+        <Button x:Name="BuRun" Content="RUN" Margin="319,417,319,0" VerticalAlignment="Top" Height="51" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}"/>
         <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
 
         <TextBlock Text="Pick a map:" HorizontalAlignment="Left" Margin="25,129,0,0" VerticalAlignment="Top"/>
@@ -34,7 +34,7 @@
             </ComboBox.ItemsPanel>
         </ComboBox>
 
-        <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="25,204,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="Pick a mode:" HorizontalAlignment="Left" Margin="29,207,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="CobMode" HorizontalAlignment="Left" Height="36" Margin="25,0,0,0" VerticalAlignment="Center" Width="200" FontSize="20" SelectionChanged="CobMode_SelectionChanged" Style="{StaticResource ComboBoxRevealStyle}">
             <ComboBoxItem Content="Knockout"/>
             <ComboBoxItem Content="Play"/>
@@ -45,18 +45,69 @@
 
         <TextBox x:Name="TebCurReplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="415,0,25,0" Style="{StaticResource TextBoxRevealStyle}" VerticalAlignment="Center" Height="36" TextChanged="TebCurReplay_TextChanged"/>
 
-        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top"/>
+        <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top" Checked="CebRecord_Checked" Unchecked="CebRecord_Unchecked"/>
 
         <Label Foreground="{StaticResource TextColorLight}" Content="Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,312,0,0" VerticalAlignment="Top" Width="76"/>
+        <DockPanel Margin="0,3,0,-10">
+            <TextBox DockPanel.Dock="Top" x:Name="CursorsTextBox" Text="{Binding Value,ElementName=CursorsScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
+            <ScrollBar x:Name="CursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <ScrollBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.65"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform X="187" Y="-1"/>
+                    </TransformGroup>
+                </ScrollBar.RenderTransform>
+            </ScrollBar>
+        </DockPanel>
         <Label Foreground="{StaticResource TextColorLight}" Content="Tag Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,345,0,0" VerticalAlignment="Top" Width="76"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="20,378,0,0" VerticalAlignment="Top" Width="76"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="20,412,0,0" VerticalAlignment="Top" Width="76"/>
-
+        <DockPanel Margin="0,38,0,-10">
+            <TextBox DockPanel.Dock="Top" x:Name="TagCursorsTextBox" Text="{Binding Value,ElementName=TagCursorsScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
+            <ScrollBar x:Name="TagCursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <ScrollBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.65"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform X="187" Y="-1"/>
+                    </TransformGroup>
+                </ScrollBar.RenderTransform>
+            </ScrollBar>
+        </DockPanel>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="20,382,0,0" VerticalAlignment="Top" Width="76"/>
+        <DockPanel Margin="0,73,0,-10">
+            <TextBox DockPanel.Dock="Top" x:Name="SpeedTextBox" Text="{Binding Value,ElementName=SpeedScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
+            <ScrollBar x:Name="SpeedScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <ScrollBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.65"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform X="187" Y="-1"/>
+                    </TransformGroup>
+                </ScrollBar.RenderTransform>
+            </ScrollBar>
+        </DockPanel>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="20,418,0,0" VerticalAlignment="Top" Width="76"/>
+        <DockPanel Margin="0,108,0,-10">
+            <TextBox DockPanel.Dock="Top" x:Name="PitchTextBox" Text="{Binding Value,ElementName=PitchScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="2" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
+            <ScrollBar x:Name="PitchScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <ScrollBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.65"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform X="187" Y="-1"/>
+                    </TransformGroup>
+                </ScrollBar.RenderTransform>
+            </ScrollBar>
+        </DockPanel>
         <Label Foreground="{StaticResource TextColorLight}" Content="Custom File Name:" HorizontalAlignment="Left" Height="27" Margin="102,283,0,0" VerticalAlignment="Top" Width="118"/>
-        <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="21" Margin="225,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-        <Label Foreground="{StaticResource TextColorLight}" x:Name="LabExt" Content="" HorizontalAlignment="Left" Height="26" Margin="405,284,0,0" VerticalAlignment="Top" Width="71"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="21,440,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="96,444,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"/>
+        <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="21" Margin="225,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Label Foreground="{StaticResource TextColorLight}" x:Name="LabExt" Content="" HorizontalAlignment="Left" Height="26" Margin="415,284,0,0" VerticalAlignment="Top" Width="71"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="21,450,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="20" Margin="110,454,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
 
     </Grid>
 </Window>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

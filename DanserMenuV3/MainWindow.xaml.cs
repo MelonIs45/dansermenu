@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Data.Sqlite;
@@ -8,7 +10,7 @@ using Microsoft.Win32;
 namespace DanserMenuV3
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -22,7 +24,8 @@ namespace DanserMenuV3
             if (TebSearch.Text.Length > 3)
             {
                 CobMaps.Items.Clear();
-                using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
+                using var connection =
+                    new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText =
@@ -34,15 +37,16 @@ namespace DanserMenuV3
                     AND mode = 0
                 ";
 
-                using var reader = command.ExecuteReader();
-                while (reader.Read())
+                var sqlTask = Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); });
+                var res = sqlTask.Result;
+
+                while (res.Read())
                 {
-                    var name = $"{reader.GetString(3)} [{reader.GetString(8)}]";
+                    var name = $"{res.GetString(3)} [{res.GetString(8)}]";
 
                     CobMaps.Items.Add(name);
                 }
             }
-            
         }
 
         private void BuRun_Click(object sender, RoutedEventArgs e)
@@ -61,30 +65,31 @@ namespace DanserMenuV3
                     AND version = '{diffName}'
                 ";
 
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                var md5 = reader.GetString(21);
+            var sqlTask = Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); });
+            var res = sqlTask.Result;
 
-                Process process = new Process();
-                ProcessStartInfo startInfo = new ProcessStartInfo
+            while (res.Read())
+            {
+                var md5 = res.GetString(21);
+
+                var process = new Process();
+                var startInfo = new ProcessStartInfo
                 {
-                    FileName = $"danser.exe",
-                    Arguments = $"-md5={md5}",
+                    FileName = "danser.exe",
+                    Arguments = $"-md5={md5}"
                 };
                 process.StartInfo = startInfo;
 
                 try
                 {
                     process.Start();
-                } catch (System.ComponentModel.Win32Exception)
+                }
+                catch (Win32Exception)
                 {
                     MessageBox.Show("danser.exe not found in the same directory as the program!");
                 }
-                
 
                 TebMd5.Text = $"Command: {startInfo.Arguments}";
-                Debug.WriteLine(TebMd5.Text);
             }
         }
 
@@ -103,7 +108,7 @@ namespace DanserMenuV3
                     break;
                 case "Replay":
                     Debug.WriteLine("TEST");
-                    var replayFileDialog = new OpenFileDialog()
+                    var replayFileDialog = new OpenFileDialog
                     {
                         Filter = "osr files (*.osr)|*.osr",
                         Title = "Open osr file"
@@ -112,17 +117,15 @@ namespace DanserMenuV3
 
                     if (result == true)
                     {
-                        // Open document 
                         var filename = replayFileDialog.SafeFileName;
                         TebCurReplay.Text = filename;
 
                         TebCurReplay.Height = 50;
 
                         if (utils.MeasureString(TebCurReplay).Width < TebCurReplay.ActualWidth)
-                        {
                             TebCurReplay.Height = 36;
-                        }
                     }
+
                     break;
             }
         }
@@ -131,9 +134,22 @@ namespace DanserMenuV3
         {
             var utils = new Utils();
             TebCurReplay.Height = 50;
-            if (utils.MeasureString(TebCurReplay).Width < TebCurReplay.ActualWidth)
+            if (utils.MeasureString(TebCurReplay).Width < TebCurReplay.ActualWidth) TebCurReplay.Height = 36;
+        }
+
+        private void CebRecord_Checked(object sender, RoutedEventArgs e)
+        {
+            if (CebRecord.IsChecked == true)
             {
-                TebCurReplay.Height = 36;
+                TebOutName.IsEnabled = true;
+            }
+        }
+
+        private void CebRecord_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CebRecord.IsChecked == false)
+            {
+                TebOutName.IsEnabled = false;
             }
         }
     }
