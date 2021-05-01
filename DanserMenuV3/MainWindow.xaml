@@ -7,12 +7,12 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
 
         mc:Ignorable="d"
-        Title="DANSER Menu" Height="532" Width="800"
+        Title="DANSER Menu" Height="552" Width="800"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">Black</Brush>
+        <Brush x:Key="TextColorLight">White</Brush>
         <Brush x:Key="TextColorDark">Black</Brush>
     </Window.Resources>
 
@@ -22,7 +22,7 @@
         <TextBlock Text="Search for a map:" HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TebSearch" Height="49" Margin="25,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" TextChanged="TebSearch_TextChanged" Style="{StaticResource TextBoxRevealStyle}"/>
 
-        <Button x:Name="BuRun" Content="RUN" Margin="319,417,319,0" VerticalAlignment="Top" Height="51" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}"/>
+        <Button Foreground="{StaticResource TextColorLight}" x:Name="BuRun" Content="RUN" Margin="25,441,25,0" VerticalAlignment="Top" Height="50" FontSize="36" Click="BuRun_Click" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" FontFamily="Lucida Sans" Background="#FFA6A6A6"/>
         <TextBlock x:Name="TebMd5" HorizontalAlignment="Left" Margin="339,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476"/>
 
         <TextBlock Text="Pick a map:" HorizontalAlignment="Left" Margin="25,129,0,0" VerticalAlignment="Top"/>
@@ -47,67 +47,67 @@
 
         <CheckBox Foreground="{StaticResource TextColorLight}" x:Name="CebRecord" Content="Record" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top" Checked="CebRecord_Checked" Unchecked="CebRecord_Unchecked"/>
 
-        <Label Foreground="{StaticResource TextColorLight}" Content="Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,312,0,0" VerticalAlignment="Top" Width="76"/>
-        <DockPanel Margin="0,3,0,-10">
-            <TextBox DockPanel.Dock="Top" x:Name="CursorsTextBox" Text="{Binding Value,ElementName=CursorsScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
-            <ScrollBar x:Name="CursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <ScrollBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.65"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform X="187" Y="-1"/>
-                    </TransformGroup>
-                </ScrollBar.RenderTransform>
-            </ScrollBar>
-        </DockPanel>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Tag Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,345,0,0" VerticalAlignment="Top" Width="76"/>
-        <DockPanel Margin="0,38,0,-10">
-            <TextBox DockPanel.Dock="Top" x:Name="TagCursorsTextBox" Text="{Binding Value,ElementName=TagCursorsScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
-            <ScrollBar x:Name="TagCursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <ScrollBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.65"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform X="187" Y="-1"/>
-                    </TransformGroup>
-                </ScrollBar.RenderTransform>
-            </ScrollBar>
-        </DockPanel>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="20,382,0,0" VerticalAlignment="Top" Width="76"/>
-        <DockPanel Margin="0,73,0,-10">
-            <TextBox DockPanel.Dock="Top" x:Name="SpeedTextBox" Text="{Binding Value,ElementName=SpeedScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
-            <ScrollBar x:Name="SpeedScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <ScrollBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.65"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform X="187" Y="-1"/>
-                    </TransformGroup>
-                </ScrollBar.RenderTransform>
-            </ScrollBar>
-        </DockPanel>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="20,418,0,0" VerticalAlignment="Top" Width="76"/>
-        <DockPanel Margin="0,108,0,-10">
-            <TextBox DockPanel.Dock="Top" x:Name="PitchTextBox" Text="{Binding Value,ElementName=PitchScrollbar,StringFormat={}{0},Mode=TwoWay}" MaxLength="2" VerticalContentAlignment="Center" FontSize="16" Height="23" Margin="102,312,604,0" Width="78" IsEnabled="False"/>
-            <ScrollBar x:Name="PitchScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <ScrollBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.65"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180"/>
-                        <TranslateTransform X="187" Y="-1"/>
-                    </TransformGroup>
-                </ScrollBar.RenderTransform>
-            </ScrollBar>
-        </DockPanel>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Cursors:" HorizontalAlignment="Left" Height="28" Margin="21,323,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="CursorsTextBox" Text="{Binding Value, ElementName=CursorsScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="110,323,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="CursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <ScrollBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.05"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform X="187" Y="357.5"/>
+                </TransformGroup>
+            </ScrollBar.RenderTransform>
+        </ScrollBar>
+
+        <Label Foreground="{StaticResource TextColorLight}" Content="Tag Cursors:" HorizontalAlignment="Left" Height="28" Margin="20,369,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="TagCursorsTextBox" Text="{Binding Value, ElementName=TagCursorsScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Height="36" Margin="110,369,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="TagCursorsScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <ScrollBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.05"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform X="187" Y="404"/>
+                </TransformGroup>
+            </ScrollBar.RenderTransform>
+        </ScrollBar>
+
+        <Label Foreground="{StaticResource TextColorLight}" Content="Speed:" HorizontalAlignment="Left" Height="28" Margin="220,323,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="SpeedTextBox" Text="{Binding Value, ElementName=SpeedScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="11" VerticalContentAlignment="Center" FontSize="16" Margin="280,323,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="SpeedScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <ScrollBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.05"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform X="357" Y="357.5"/>
+                </TransformGroup>
+            </ScrollBar.RenderTransform>
+        </ScrollBar>
+
+        <Label Foreground="{StaticResource TextColorLight}" Content="Pitch:" HorizontalAlignment="Left" Height="28" Margin="220,369,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="PitchTextBox" Text="{Binding Value, ElementName=PitchScrollbar, StringFormat={}{0}, Mode=TwoWay}" Style="{StaticResource TextBoxRevealStyle}" MaxLength="2" VerticalContentAlignment="Center" FontSize="16" Margin="280,369,0,0" Width="78" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ScrollBar x:Name="PitchScrollbar" Orientation="Vertical" Minimum="0" Maximum="100" BorderBrush="{x:Null}" SmallChange="1" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <ScrollBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.05"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform X="357" Y="404"/>
+                </TransformGroup>
+            </ScrollBar.RenderTransform>
+        </ScrollBar>
+
         <Label Foreground="{StaticResource TextColorLight}" Content="Custom File Name:" HorizontalAlignment="Left" Height="27" Margin="102,283,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="TebOutName" HorizontalAlignment="Left" Height="21" Margin="225,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
         <Label Foreground="{StaticResource TextColorLight}" x:Name="LabExt" Content="" HorizontalAlignment="Left" Height="26" Margin="415,284,0,0" VerticalAlignment="Top" Width="71"/>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="21,450,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="110,454,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Mods:" HorizontalAlignment="Left" Height="28" Margin="595,286,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Right" Height="36" Margin="659,286,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"  Style="{StaticResource TextBoxRevealStyle}" FontSize="16"/>
+        <Slider HorizontalAlignment="Left" Height="23" Margin="415,335,0,0" VerticalAlignment="Top" Width="360"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="Start Time:" HorizontalAlignment="Left" Height="25" Margin="415,305,0,0" VerticalAlignment="Top" Width="71"/>
+        <Slider HorizontalAlignment="Left" Height="23" Margin="415,381,0,0" VerticalAlignment="Top" Width="360" Value="100"/>
+        <Label Foreground="{StaticResource TextColorLight}" Content="End Time:" HorizontalAlignment="Left" Height="25" Margin="415,351,0,0" VerticalAlignment="Top" Width="71"/>
 
     </Grid>
 </Window>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
