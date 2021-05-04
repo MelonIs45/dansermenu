@@ -189,6 +189,7 @@ namespace DanserMenuV3
                 while (res.Read())
                 {
                     var maximum = Convert.ToDouble(res.GetString(33)) / 1000;
+                    SliStartTime.Maximum = maximum;
                     SliEndTime.Maximum = maximum;
 
                     ArTextBox.Text = res.GetString(12);
