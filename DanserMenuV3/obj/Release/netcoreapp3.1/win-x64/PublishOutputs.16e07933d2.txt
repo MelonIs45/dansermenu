@@ -1,0 +1,2 @@
+D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Release\netcoreapp3.1\publish\DANSER Menu.pdb
+D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Release\netcoreapp3.1\publish\DANSER Menu.exe

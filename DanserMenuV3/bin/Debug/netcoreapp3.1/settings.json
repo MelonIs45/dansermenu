@@ -2,7 +2,8 @@
 	"General": {
 		"OsuSongsDir": "C:\\Users\\ryanp\\AppData\\Local\\osu!\\Songs",
 		"OsuSkinsDir": "C:\\Users\\ryanp\\AppData\\Local\\osu!\\Skins",
-		"DiscordPresenceOn": true
+		"DiscordPresenceOn": true,
+		"UnpackOszFiles": true
 	},
 	"Graphics": {
 		"Width": 1920,
@@ -34,7 +35,11 @@
 	"Input": {
 		"LeftKey": "F",
 		"RightKey": "G",
-		"MouseButtonsDisabled": true
+		"RestartKey": "`",
+		"SmokeKey": "C",
+		"MouseButtonsDisabled": true,
+		"MouseHighPrecision": false,
+		"MouseSensitivity": 1
 	},
 	"Gameplay": {
 		"HitErrorMeter": {
@@ -42,6 +47,7 @@
 			"Scale": 1,
 			"Opacity": 1,
 			"ShowUnstableRate": true,
+			"UnstableRateDecimals": 0,
 			"UnstableRateScale": 1
 		},
 		"Score": {
@@ -67,6 +73,7 @@
 			"Opacity": 1,
 			"XPosition": 5,
 			"YPosition": 150,
+			"Decimals": 0,
 			"Align": "CentreLeft",
 			"ShowInResults": true
 		},
@@ -110,11 +117,13 @@
 		"ShowResultsScreen": true,
 		"ResultsScreenTime": 2,
 		"ShowWarningArrows": true,
-		"FlashlightDim": 1
+		"FlashlightDim": 1,
+		"PlayUsername": "Guest"
 	},
 	"Skin": {
 		"CurrentSkin": "- JesusOmega {NM} 『Planets』 -",
 		"UseColorsFromSkin": true,
+		"UseBeatmapColors": false,
 		"Cursor": {
 			"UseSkinCursor": false,
 			"Scale": 1,
@@ -211,6 +220,8 @@
 					"Value": 1
 				}
 			],
+			"UseSkinComboColors": false,
+			"UseBeatmapComboColors": false,
 			"Sliders": {
 				"WhiteScorePoints": true,
 				"ScorePointColorOffset": 0,
@@ -298,7 +309,8 @@
 				"DrawOverBlur": true,
 				"ParallaxMultiplier": 0.5,
 				"Density": 1,
-				"Scale": 0.5
+				"Scale": 0.5,
+				"Speed": 1
 			}
 		},
 		"Logo": {
@@ -395,6 +407,7 @@
 		"Filters": "",
 		"AudioCodec": "aac",
 		"AudioBitrate": "320k",
+		"AudioFilters": "",
 		"OutputDir": "videos",
 		"Container": "mp4",
 		"MotionBlur": {

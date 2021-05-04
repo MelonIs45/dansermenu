@@ -77,13 +77,6 @@ D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DanserMenuV3_MarkupCompile.lref
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\App.baml
 D:\github.com\melonis45\dansermenu\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\FluentWPF.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\Microsoft.Data.Sqlite.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\SQLitePCLRaw.batteries_v2.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\SQLitePCLRaw.nativelibrary.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\SQLitePCLRaw.core.dll
-D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\SQLitePCLRaw.provider.dynamic_cdecl.dll
 D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\runtimes\alpine-x64\native\libe_sqlite3.so
 D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\runtimes\linux-arm\native\libe_sqlite3.so
 D:\github.com\melonis45\dansermenu\DanserMenuV3\bin\Debug\netcoreapp3.1\runtimes\linux-arm64\native\libe_sqlite3.so
@@ -118,3 +111,4 @@ D:\github.com\melonis45\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DANSER M
 D:\github.com\melonis45\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DANSER Menu.g.resources
 D:\github.com\melonis45\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DANSER Menu.dll
 D:\github.com\melonis45\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DANSER Menu.pdb
+D:\github.com\melonis45\dansermenu\DanserMenuV3\obj\Debug\netcoreapp3.1\DanserMenuV3.csproj.Fody.CopyLocal.cache

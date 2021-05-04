@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -9,7 +8,7 @@ using Size = System.Drawing.Size;
 
 namespace DanserMenuV3
 {
-    class Utils
+    internal class Utils
     {
         public Size MeasureString(TextBox textBox)
         {
@@ -23,7 +22,7 @@ namespace DanserMenuV3
                 new NumberSubstitution(),
                 1);
 
-            return new Size((int)formattedText.Width, (int)formattedText.Height);
+            return new Size((int)formattedText.Width, (int)formattedText.Height); // Returns the size of the string passed into the function
         }
 
         public string FormatCommands(MainWindow mainWindow, string md5)
@@ -41,8 +40,10 @@ namespace DanserMenuV3
             }
             else
             {
-                if (mainWindow.CobMode.Text.ToLower() != "none")
-                command += $" -{mainWindow.CobMode.Text.ToLower()}";
+                if (mainWindow.CobMode.Text.ToLower() != "dance")
+                {
+                    command += $" -{mainWindow.CobMode.Text.ToLower()}";
+                }
             }
 
             command += FormatNumberArgs(mainWindow);
@@ -79,15 +80,21 @@ namespace DanserMenuV3
                 command += $" -debug";
             }
 
-            using (var logFile = new StreamWriter("menu.log", true))
+            if (mainWindow.ChkNoDb.IsChecked == true)
             {
-                logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
-                logFile.WriteLine($"Command ran using: {command}");
-                logFile.WriteLine("#######################");
-                logFile.WriteLine();
-
-                logFile.Close();
+                command += $" -nodbcheck";
             }
+
+            if (mainWindow.ChkQuickStart.IsChecked == true)
+            {
+                command += $" -quickstart";
+            }
+
+            using var logFile = new StreamWriter("menu.log", true);
+            LogCommand(logFile, command);
+
+            //mainWindow.DEBUGCOMMAND.Text = command;
+
             return command;
         }
 
@@ -101,6 +108,7 @@ namespace DanserMenuV3
                 {
                     numberArgs += $" -cursors={Convert.ToInt32(mainWindow.CursorsTextBox.Text)}";
                 }
+
                 if (Convert.ToInt32(mainWindow.TagCursorsTextBox.Text) != 1)
                 {
                     numberArgs += $" -tag={Convert.ToInt32(mainWindow.TagCursorsTextBox.Text)}";
@@ -122,23 +130,74 @@ namespace DanserMenuV3
                     }
                 }
 
+                if (mainWindow.CobMode.Text != "replay" && mainWindow.CobMode.Text != "knockout")
+                {
+                    if (mainWindow.ArCheckBox.IsChecked == true)
+                    {
+                        numberArgs += $" -ar={mainWindow.ArTextBox.Text}";
+                    }
+
+                    if (mainWindow.OdCheckBox.IsChecked == true)
+                    {
+                        numberArgs += $" -od={mainWindow.OdTextBox.Text}";
+                    }
+
+                    if (mainWindow.CsCheckBox.IsChecked == true)
+                    {
+                        numberArgs += $" -cs={mainWindow.CsTextBox.Text}";
+                    }
+
+                    if (mainWindow.HpCheckBox.IsChecked == true)
+                    {
+                        numberArgs += $" -hp={mainWindow.HpTextBox.Text}";
+                    }
+                }
+
+                if (Convert.ToDouble(mainWindow.StartTextBox.Text) != 0)
+                {
+                    numberArgs += $" -start={mainWindow.StartTextBox.Text}";
+                }
+
+                if (Convert.ToDouble(mainWindow.EndTextBox.Text) != 0)
+                {
+                    numberArgs += $" -end={mainWindow.EndTextBox.Text}";
+                }
+
+                if (mainWindow.ChkScreenshot.IsChecked == true)
+                {
+                    numberArgs += $" -ss={mainWindow.ScreenshotTime.Text}";
+                }
+
                 return numberArgs;
             }
             
             catch (Exception ex)
             {
-                using (var logFile = new StreamWriter("menu.log", true))
-                {
-                    logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
-                    logFile.WriteLine($"Error: {ex}");
-                    logFile.WriteLine("#######################");
-                    logFile.WriteLine();
+                using var logFile = new StreamWriter("menu.log", true);
+                LogError(logFile, ex);
 
-                    logFile.Close();
-                }
-
-                return "";
+                return string.Empty;
             }
+        }
+
+        public void LogError(StreamWriter logFile, Exception ex)
+        {
+            logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            logFile.WriteLine($"Error: {ex}");
+            logFile.WriteLine("#######################");
+            logFile.WriteLine();
+
+            logFile.Close();
+        }
+
+        public void LogCommand(StreamWriter logFile, string command)
+        {
+            logFile.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            logFile.WriteLine($"Command ran using: {command}");
+            logFile.WriteLine("#######################");
+            logFile.WriteLine();
+
+            logFile.Close();
         }
     }
 }
