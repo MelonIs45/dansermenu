@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +34,11 @@ namespace DanserMenuV3
             if (!logExists)
             {
                 File.Create("menu.log"); // Makes menu.log if it didn't exist before
+            }
+
+            if (!File.Exists("danser.db") || !File.Exists("settings.json"))
+            {
+                StartDanser(" -md5=0"); // Checks if danser.db exists and makes danser make it if it doesn't
             }
             
         }
@@ -82,23 +88,7 @@ namespace DanserMenuV3
                 while (res.Read())
                 {
                     var md5 = res.GetString(21);
-
-                    var process = new Process();
-                    var startInfo = new ProcessStartInfo
-                    {
-                        FileName = "danser.exe",
-                        Arguments = $"{_utils.FormatCommands(this, md5)}"
-                    };
-                    process.StartInfo = startInfo;
-
-                    try
-                    { 
-                        process.Start();
-                    }
-                    catch (Win32Exception)
-                    {
-                        System.Windows.MessageBox.Show("danser.exe not found in the same directory as the program!");
-                    }
+                    StartDanser(_utils.FormatCommands(this, md5));
                 }
 
                 res.Close();
@@ -304,6 +294,24 @@ namespace DanserMenuV3
             }
         }
 
-
+        private void StartDanser(string args)
+        {
+            var process = new Process();
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "danser.exe",
+                Arguments = args
+            };
+            process.StartInfo = startInfo;
+            Debug.WriteLine(Directory.GetCurrentDirectory());
+            try
+            {
+                process.Start();
+            }
+            catch (Win32Exception)
+            {
+                System.Windows.MessageBox.Show("danser.exe not found in the same directory as the program!");
+            }
+        }
     }
 }

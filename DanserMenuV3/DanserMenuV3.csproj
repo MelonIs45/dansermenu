@@ -6,10 +6,6 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>DANSER Menu.ico</ApplicationIcon>
     <AssemblyName>DANSER Menu</AssemblyName>
-	  <PublishTrimmed>true</PublishTrimmed>
-	  <PublishReadyToRun>true</PublishReadyToRun>
-	  <PublishSingleFile>true</PublishSingleFile>
-	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>

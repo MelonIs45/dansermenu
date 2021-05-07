@@ -42,7 +42,7 @@
             <ComboBoxItem Content="Play"/>
             <ComboBoxItem Content="Replay"/>
         </ComboBox>
-        <Label Foreground="{StaticResource TextColorLight}" Content="Current Replay Selected:" HorizontalAlignment="Left" Margin="250,232,0,0" VerticalAlignment="Top" Height="36">
+        <Label Foreground="{StaticResource TextColorLight}" Content="Current Replay Path:" HorizontalAlignment="Left" Margin="280,232,0,0" VerticalAlignment="Top" Height="36">
         </Label>
 
         <TextBox x:Name="TebCurReplay" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="415,232,25,0" Style="{StaticResource TextBoxRevealStyle}" VerticalAlignment="Top" Height="36" TextChanged="TebCurReplay_TextChanged"/>
