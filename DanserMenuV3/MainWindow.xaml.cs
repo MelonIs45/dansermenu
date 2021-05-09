@@ -313,5 +313,10 @@ namespace DanserMenuV3
                 System.Windows.MessageBox.Show("danser.exe not found in the same directory as the program!");
             }
         }
+
+        private void BtnUpdateDb_Click(object sender, RoutedEventArgs e)
+        {
+            StartDanser(" -md5=0");
+        }
     }
 }
