@@ -13,7 +13,7 @@ namespace DanserMenuV3
         public Size MeasureString(TextBox textBox)
         {
             var formattedText = new FormattedText(
-                textBox.Text + "......", // Make string longer to give it some leeway, 6 periods seems give it a really clean transition
+                textBox.Text + "......", // Make string longer to give it some overhead, 6 periods seems give it a really clean transition
                 CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface(textBox.FontFamily, textBox.FontStyle, textBox.FontWeight, textBox.FontStretch),
