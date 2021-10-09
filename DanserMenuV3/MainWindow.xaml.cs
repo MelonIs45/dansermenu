@@ -84,6 +84,8 @@ namespace DanserMenuV3
             try
             {
                 var res = GetComboboxMapInfo();
+                if (res == null) 
+                    StartDanser(_utils.FormatCommands(this, ""));
 
                 while (res.Read())
                 {
@@ -102,14 +104,12 @@ namespace DanserMenuV3
 
         private SqliteDataReader GetComboboxMapInfo()
         {
-            var mapName = "";
-            var diffName = "";
-
-            if (CobMaps.Items.Count != 0)
+            if (CobMaps.Items.Count == 0)
             {
-                mapName = CobMaps.SelectedItem.ToString().Split('[')[0].Replace("'", "''").Trim();
-                diffName = CobMaps.SelectedItem.ToString().Split('[')[1].Split(']')[0].Replace("'", "''");
+                return null;
             }
+            var mapName = CobMaps.SelectedItem.ToString().Split('[')[0].Replace("'", "''").Trim();
+            var diffName = CobMaps.SelectedItem.ToString().Split('[')[1].Split(']')[0].Replace("'", "''");
 
             var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db");
             connection.Open();
@@ -182,10 +182,10 @@ namespace DanserMenuV3
                     SliStartTime.Maximum = maximum;
                     SliEndTime.Maximum = maximum;
 
-                    ArTextBox.Text = res.GetString(12);
-                    CsTextBox.Text = res.GetString(11);
-                    OdTextBox.Text = res.GetString(26);
-                    HpTextBox.Text = res.GetString(25);
+                    ArTextBox.Text = res.GetString(12); // AR Column
+                    CsTextBox.Text = res.GetString(11); // CS Column
+                    OdTextBox.Text = res.GetString(26); // OD Column
+                    HpTextBox.Text = res.GetString(25); // HP Column
                 }
 
                 res.Close();
