@@ -90,6 +90,11 @@ namespace DanserMenuV3
                 command += $" -quickstart";
             }
 
+            if (mainWindow.TebSettingsName.Text != "")
+            {
+                command += $" -settings=\"{mainWindow.TebSettingsName.Text}\"";
+            }
+
             using var logFile = new StreamWriter("menu.log", true);
             LogCommand(logFile, command);
 
