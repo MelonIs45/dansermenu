@@ -11,7 +11,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Data.Sqlite;
 using System.Windows.Forms;
+using System.Xml;
 using Newtonsoft.Json.Linq;
+using SourceChord.FluentWPF;
 
 namespace DanserMenuV3
 {
@@ -351,5 +353,10 @@ namespace DanserMenuV3
 				_utils.LogError(logFile, ex);
 			}
 		}
-	}
+
+        private void StyleCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            AcrylicWindow.SetEnabled(this, false); // Doesn't work? :(
+        }
+    }
 }
