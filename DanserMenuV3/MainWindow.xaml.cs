@@ -36,7 +36,7 @@ namespace DanserMenuV3
                 File.Create("menu.log"); // Makes menu.log if it didn't exist before
             }
 
-            if (!File.Exists("danser.db") || !File.Exists("settings.json"))
+            if (!File.Exists("danser.db") || !File.Exists("settings/default.json"))
             {
                 StartDanser(" -md5=0"); // Checks if danser.db exists and makes danser make it if it doesn't
             }
@@ -267,7 +267,7 @@ namespace DanserMenuV3
         {
             try
             {
-                var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings.json"));
+                var settingsJson = JObject.Parse(File.ReadAllText($@"{Directory.GetCurrentDirectory()}\settings\default.json"));
 
                 var skinFolderDialog = new System.Windows.Forms.FolderBrowserDialog()
                 {
