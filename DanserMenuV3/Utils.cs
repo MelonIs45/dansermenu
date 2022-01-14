@@ -90,6 +90,11 @@ namespace DanserMenuV3
                 command += $" -quickstart";
             }
 
+            if (mainWindow.ChkNoUpdateCheck.IsChecked == true)
+            {
+                command += $" -noupdatecheck";
+            }
+
             if (mainWindow.TebSettingsName.Text != "")
             {
                 command += $" -settings=\"{mainWindow.TebSettingsName.Text.Split(".json")[0]}\"";
