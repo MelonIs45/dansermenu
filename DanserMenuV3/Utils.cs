@@ -92,7 +92,7 @@ namespace DanserMenuV3
 
             if (mainWindow.TebSettingsName.Text != "")
             {
-                command += $" -settings=\"{mainWindow.TebSettingsName.Text}\"";
+                command += $" -settings=\"{mainWindow.TebSettingsName.Text.Split(".json")[0]}\"";
             }
 
             using var logFile = new StreamWriter("menu.log", true);

@@ -337,7 +337,7 @@ namespace DanserMenuV3
                 if (result == true)
                 {
                     var filename = settingsFileDialog.FileName;
-                    TebSettingsName.Text = filename.Split($"{Directory.GetCurrentDirectory() + "\\settings\\"}")[1];
+                    TebSettingsName.Text = filename.Split($"{Directory.GetCurrentDirectory() + "\\settings\\"}")[1].Split(".json")[0];
 
                     TebSettingsName.Height = 50;
 
