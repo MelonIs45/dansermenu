@@ -18,3 +18,7 @@
 * Simply download [THIS](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.22-windows-x64-installer) and install it onto your system.
 2. `danser.exe not found in the same directory as the program!`
 * Make sure that all of your menu files are in the same folder as the main `danser.exe` file.
+3. Thats all I can think of so far
+* If you need any extra help, be sure to join my discord server [HERE](https://discord.com/invite/XTWRfJfjpc)!
+
+If you support this project, it would be great if you became a stargazer by clicking the star in the top right corner of this page :D
