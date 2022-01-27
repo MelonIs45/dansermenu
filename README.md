@@ -6,7 +6,7 @@
 <h2 align="center">A menu made for <a href="https://github.com/Wieku/danser-go">DANSER</a>, a cursordance client based on the rythmn game <a href="https://github.com/ppy/osu">osu!</a></h2>
 <br>
 
-## How to Install the program
+## How to Install the menu
 1. Head over to the latest release page found [HERE](https://github.com/MelonIs45/dansermenu/releases/latest)
 2. In the assets tab, click on the file called `DANSER-Menu-Va.b.c.zip`
 3. Once downloaded, extract all the files
