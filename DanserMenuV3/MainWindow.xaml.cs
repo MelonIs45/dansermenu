@@ -24,7 +24,7 @@ namespace DanserMenuV3
 		public MainWindow()
 		{
 			InitializeComponent();
-			
+			TebSearch_TextChanged(null, null);
 
 			var logExists = File.Exists($"{Directory.GetCurrentDirectory()}\\menu.log");
 			if (logExists)
@@ -49,29 +49,37 @@ namespace DanserMenuV3
 		{
 			try
 			{
-				if (TebSearch.Text.Length > 3) // Only searches db when there are 4 or more characters, this makes the program not lag as much
-				{
-					CobMaps.Items.Clear();
-					using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db"); // Connects to danser.db
-					connection.Open();
+				CobMaps.Items.Clear();
 
-					var command = connection.CreateCommand();
-					command.CommandText =
-						$@"
+				
+
+				using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db"); // Connects to danser.db
+				connection.Open();
+
+				var command = connection.CreateCommand();
+				command.CommandText =
+					$@"
 					SELECT *
 					FROM beatmaps
-					WHERE dir LIKE '%{TebSearch.Text}%'
-					OR tags LIKE '%{TebSearch.Text}%'
+					WHERE dir LIKE '%{TebSearch.Text}%' OR tags LIKE '%{TebSearch.Text}%' OR version LIKE '%{TebSearch.Text}%' OR mapId = '{TebSearch.Text}'
 					AND mode = 0
 					"; // Selects maps where the name of the map and tags of it match the query
 
-					var res = Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); }).Result; // Fetches the data from the request
+				var res = Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); }).Result; // Fetches the data from the request
 
-					while (res.Read())
-					{
-						var name = $"{res.GetString(3)} [{res.GetString(8)}]"; // Formats the map
-						CobMaps.Items.Add(name);
-					}
+				while (res.Read())
+				{
+					var name = $"{res.GetString(3)} [{res.GetString(8)}]"; // Formats the map
+					CobMaps.Items.Add(name);
+				}
+
+				if (CobMaps.Items.Count < 50) // Only uses fancey style when there are less than 50 maps from search, this makes the program not lag as much
+				{
+					CobMaps.Style = CobMode.Style;
+				}
+				else
+				{
+					CobMaps.Style = null;
 				}
 			}
 			catch (Exception ex)
@@ -177,20 +185,22 @@ namespace DanserMenuV3
 			try
 			{
 				var res = GetComboboxMapInfo();
-
-				while (res.Read())
+				if (res != null)
 				{
-					var maximum = Convert.ToDouble(res.GetString(33)) / 1000;
-					SliStartTime.Maximum = maximum;
-					SliEndTime.Maximum = maximum;
+					while (res.Read())
+					{
+						var maximum = Convert.ToDouble(res.GetString(33)) / 1000;
+						SliStartTime.Maximum = maximum;
+						SliEndTime.Maximum = maximum;
 
-					ArTextBox.Text = res.GetString(12); // AR Column
-					CsTextBox.Text = res.GetString(11); // CS Column
-					OdTextBox.Text = res.GetString(26); // OD Column
-					HpTextBox.Text = res.GetString(25); // HP Column
+						ArTextBox.Text = res.GetString(12); // AR Column
+						CsTextBox.Text = res.GetString(11); // CS Column
+						OdTextBox.Text = res.GetString(26); // OD Column
+						HpTextBox.Text = res.GetString(25); // HP Column
+					}
+
+					res.Close();
 				}
-
-				res.Close();
 			}
 			catch (Exception ex)
 			{
@@ -321,8 +331,8 @@ namespace DanserMenuV3
 			StartDanser(" -md5=0");
 		}
 
-		private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e)
-		{
+        private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e) 
+        {
             try
             {
                 var utils = new Utils();
