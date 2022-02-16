@@ -93,9 +93,9 @@ namespace DanserMenuV3
 
 		private void BuRun_Click(object sender, RoutedEventArgs e)
 		{
-			//try
-			//{
-			var res = GetComboboxMapInfo();
+            try
+            {
+            var res = GetComboboxMapInfo();
 			var selectedItem = (ComboBoxItem)CobMode.SelectedItem;
 			var md5 = "";
 
@@ -114,13 +114,13 @@ namespace DanserMenuV3
 			res.Close();
 
 			StartDanser(_utils.FormatCommands(this, md5));
-			//}
-			//catch (Exception ex)
-			//{
-			//    using var logFile = new StreamWriter("menu.log", true);
-			//    _utils.LogError(logFile, ex);
-			//}
+        }
+		catch (Exception ex)
+		{
+			using var logFile = new StreamWriter("menu.log", true);
+			_utils.LogError(logFile, ex);
 		}
+	}
 
 		private SqliteDataReader GetComboboxMapInfo()
 		{
