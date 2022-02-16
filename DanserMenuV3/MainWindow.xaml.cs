@@ -3,15 +3,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Data.Sqlite;
-using System.Windows.Forms;
-using System.Xml;
 using Newtonsoft.Json.Linq;
 using SourceChord.FluentWPF;
 
@@ -24,7 +21,7 @@ namespace DanserMenuV3
 		public MainWindow()
 		{
 			InitializeComponent();
-			TebSearch_TextChanged(null, null);
+
 
 			var logExists = File.Exists($"{Directory.GetCurrentDirectory()}\\menu.log");
 			if (logExists)
@@ -42,7 +39,9 @@ namespace DanserMenuV3
 			{
 				StartDanser(" -md5=0"); // Checks if danser.db exists and makes danser make it if it doesn't
 			}
-			
+
+			TebSearch_TextChanged(null, null);
+
 		}
 
 		private void TebSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,20 +49,19 @@ namespace DanserMenuV3
 			try
 			{
 				CobMaps.Items.Clear();
-
-				
-
 				using var connection = new SqliteConnection($"Data Source={Directory.GetCurrentDirectory()}\\danser.db"); // Connects to danser.db
 				connection.Open();
 
 				var command = connection.CreateCommand();
 				command.CommandText =
 					$@"
-					SELECT *
-					FROM beatmaps
-					WHERE dir LIKE '%{TebSearch.Text}%' OR tags LIKE '%{TebSearch.Text}%' OR version LIKE '%{TebSearch.Text}%' OR mapId = '{TebSearch.Text}'
-					AND mode = 0
-					"; // Selects maps where the name of the map and tags of it match the query
+				SELECT *
+				FROM beatmaps
+				WHERE dir LIKE '%{TebSearch.Text}%' AND mode = 0
+				OR tags LIKE '%{TebSearch.Text}%' AND mode = 0
+                OR version LIKE '%{TebSearch.Text}%' AND mode = 0
+                OR mapId LIKE '%{TebSearch.Text}%' AND mode = 0
+				"; // Selects maps where the name of the map and tags of it match the query
 
 				var res = Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); }).Result; // Fetches the data from the request
 
@@ -73,7 +71,11 @@ namespace DanserMenuV3
 					CobMaps.Items.Add(name);
 				}
 
-				if (CobMaps.Items.Count < 50) // Only uses fancey style when there are less than 50 maps from search, this makes the program not lag as much
+				connection.Close();
+
+				TxtBlockMaps.Text = $"Pick a map (Found {CobMaps.Items.Count} maps):";
+
+				if (CobMaps.Items.Count < 50)
 				{
 					CobMaps.Style = CobMode.Style;
 				}
@@ -91,30 +93,39 @@ namespace DanserMenuV3
 
 		private void BuRun_Click(object sender, RoutedEventArgs e)
 		{
-			try
-			{
-				var res = GetComboboxMapInfo();
-				if (res == null) 
-					StartDanser(_utils.FormatCommands(this, ""));
+			//try
+			//{
+			var res = GetComboboxMapInfo();
+			var selectedItem = (ComboBoxItem)CobMode.SelectedItem;
+			var md5 = "";
 
-				while (res.Read())
-				{
-					var md5 = res.GetString(21);
-					StartDanser(_utils.FormatCommands(this, md5));
-				}
-
-				res.Close();
-			}
-			catch (Exception ex)
+			if (selectedItem.Content.ToString() == "Replay")
 			{
-				using var logFile = new StreamWriter("menu.log", true);
-				_utils.LogError(logFile, ex);
+				StartDanser(_utils.FormatCommands(this, md5));
+				return;
 			}
+
+			while (res.Read())
+			{
+				md5 = res.GetString(21);
+
+			}
+
+			res.Close();
+
+			StartDanser(_utils.FormatCommands(this, md5));
+			//}
+			//catch (Exception ex)
+			//{
+			//    using var logFile = new StreamWriter("menu.log", true);
+			//    _utils.LogError(logFile, ex);
+			//}
 		}
 
 		private SqliteDataReader GetComboboxMapInfo()
 		{
-			if (CobMaps.Items.Count == 0)
+			var selectedItem = (ComboBoxItem)CobMode.SelectedItem;
+			if (CobMaps.Items.Count == 0 || selectedItem.Content.ToString() == "Replay")
 			{
 				return null;
 			}
@@ -133,6 +144,7 @@ namespace DanserMenuV3
 				";
 
 			return Task<SqliteDataReader>.Factory.StartNew(() => { return command.ExecuteReader(); }).Result;
+
 		}
 
 		private void CobMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -185,6 +197,7 @@ namespace DanserMenuV3
 			try
 			{
 				var res = GetComboboxMapInfo();
+
 				if (res != null)
 				{
 					while (res.Read())
@@ -198,9 +211,9 @@ namespace DanserMenuV3
 						OdTextBox.Text = res.GetString(26); // OD Column
 						HpTextBox.Text = res.GetString(25); // HP Column
 					}
-
-					res.Close();
 				}
+
+				res.Close();
 			}
 			catch (Exception ex)
 			{
@@ -262,7 +275,7 @@ namespace DanserMenuV3
 			var regex = new Regex("[^0-9]+"); // Only allows numbers 0 to 9, eg: 14
 			e.Handled = regex.IsMatch(e.Text);
 		}
-		
+
 		private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
 		{
 			var regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$"); // Only allows numbers and periods, eg: 0.122
@@ -319,10 +332,11 @@ namespace DanserMenuV3
 			try
 			{
 				process.Start();
+				process.WaitForExit();
 			}
 			catch (Win32Exception)
 			{
-				System.Windows.MessageBox.Show("danser.exe not found in the same directory as the program!");
+				MessageBox.Show("danser.exe not found in the same directory as the program!");
 			}
 		}
 
@@ -331,32 +345,32 @@ namespace DanserMenuV3
 			StartDanser(" -md5=0");
 		}
 
-        private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e) 
-        {
-            try
-            {
-                var utils = new Utils();
-                var settingsFileDialog = new Microsoft.Win32.OpenFileDialog
-                {
-                    Filter = "setting files (*.json)|*.json",
-                    Title = "Open settings file",
+		private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				var utils = new Utils();
+				var settingsFileDialog = new Microsoft.Win32.OpenFileDialog
+				{
+					Filter = "setting files (*.json)|*.json",
+					Title = "Open settings file",
 					InitialDirectory = Directory.GetCurrentDirectory() + "\\settings"
 				};
-                var result = settingsFileDialog.ShowDialog(); // Opens a file dialog to select a settings file
+				var result = settingsFileDialog.ShowDialog(); // Opens a file dialog to select a settings file
 
-                if (result == true)
-                {
-                    var filename = settingsFileDialog.FileName;
-                    TebSettingsName.Text = filename.Split($"{Directory.GetCurrentDirectory() + "\\settings\\"}")[1].Split(".json")[0];
+				if (result == true)
+				{
+					var filename = settingsFileDialog.FileName;
+					TebSettingsName.Text = filename.Split($"{Directory.GetCurrentDirectory() + "\\settings\\"}")[1].Split(".json")[0];
 
-                    TebSettingsName.Height = 50;
+					TebSettingsName.Height = 50;
 
-                    if (utils.MeasureString(TebSettingsName).Width < TebSettingsName.ActualWidth)
-                    {
-                        TebSettingsName.Height = 36; // Formats the textbox size based on its contents size
-                    }
-                }
-            }
+					if (utils.MeasureString(TebSettingsName).Width < TebSettingsName.ActualWidth)
+					{
+						TebSettingsName.Height = 36; // Formats the textbox size based on its contents size
+					}
+				}
+			}
 			catch (Exception ex)
 			{
 				using var logFile = new StreamWriter("menu.log", true);
@@ -364,9 +378,9 @@ namespace DanserMenuV3
 			}
 		}
 
-        private void StyleCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            AcrylicWindow.SetEnabled(this, false); // Doesn't work? :(
-        }
-    }
+		private void StyleCheckBox_Checked(object sender, RoutedEventArgs e)
+		{
+			AcrylicWindow.SetEnabled(this, false); // Doesn't work? :(
+		}
+	}
 }

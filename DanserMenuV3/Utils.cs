@@ -180,7 +180,7 @@ namespace DanserMenuV3
 
                 return numberArgs;
             }
-            
+
             catch (Exception ex)
             {
                 using var logFile = new StreamWriter("menu.log", true);
