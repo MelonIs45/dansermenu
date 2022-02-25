@@ -9,7 +9,7 @@
         Title="DANSER Menu Settings" Height="138" Width="242"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True"
-        Closing="Window_Closing">
+        >
     <Window.Resources>
         <Brush x:Key="TextColorLight">White</Brush>
     </Window.Resources>

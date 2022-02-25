@@ -398,7 +398,7 @@ namespace DanserMenuV3
 
         private void BuSettings_Click(object sender, RoutedEventArgs e)
 		{
-			settingsWindow.ShowDialog();
+			settingsWindow.Show();
         }
 
 		public void UpdateCulture(string langCode)
