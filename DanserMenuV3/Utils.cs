@@ -48,7 +48,7 @@ namespace DanserMenuV3
 
             command += FormatNumberArgs(mainWindow);
 
-            if (mainWindow.CebRecord.IsChecked == true && mainWindow.CobMode.Text.ToLower() != "play")
+            if (mainWindow.ChkRecord.IsChecked == true && mainWindow.CobMode.Text.ToLower() != "play")
             {
                 if (mainWindow.TebOutName.Text != "")
                 {

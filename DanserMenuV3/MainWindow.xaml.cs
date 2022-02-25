@@ -11,28 +11,41 @@ using System.Windows.Input;
 using Microsoft.Data.Sqlite;
 using Newtonsoft.Json.Linq;
 using SourceChord.FluentWPF;
+using System.Threading;
+using System.Globalization;
 
 namespace DanserMenuV3
 {
 	public partial class MainWindow : Window
 	{
 		readonly Utils _utils = new Utils();
+		SettingsWindow settingsWindow;
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
+			settingsWindow = new SettingsWindow(this);
+
+			if (settingsWindow.ObjectJson != null)
+			{
+				if (settingsWindow.ObjectJson["Language"].ToString() != "English") // If its not english, change the text
+				{
+					UpdateCulture(settingsWindow.LanguageCodes[settingsWindow.Languages.ToList().IndexOf(settingsWindow.ObjectJson["Language"].ToString())]);
+					settingsWindow.ChangeText();
+				}
+			}
 
 			var logExists = File.Exists($"{Directory.GetCurrentDirectory()}\\menu.log");
 			if (logExists)
 			{
 				File.Delete("menu.log");
-				File.Create("menu.log"); // Clears contents of menu.log
+				File.Create("menu.log").Close(); // Clears contents of menu.log
 			}
 
 			if (!logExists)
 			{
-				File.Create("menu.log"); // Makes menu.log if it didn't exist before
+				File.Create("menu.log").Close(); // Makes menu.log if it didn't exist before
 			}
 
 			if (!File.Exists("danser.db") || !File.Exists("settings/default.json"))
@@ -73,7 +86,7 @@ namespace DanserMenuV3
 
 				connection.Close();
 
-				TxtBlockMaps.Text = $"Pick a map (Found {CobMaps.Items.Count} maps):";
+				LabelPAM.Text = $"{Strings.PAM} ({Strings.MF} {CobMaps.Items.Count}):";
 
 				if (CobMaps.Items.Count < 50)
 				{
@@ -93,7 +106,7 @@ namespace DanserMenuV3
 
 		private void BuRun_Click(object sender, RoutedEventArgs e)
 		{
-            try
+        try
             {
             var res = GetComboboxMapInfo();
 			var selectedItem = (ComboBoxItem)CobMode.SelectedItem;
@@ -238,7 +251,7 @@ namespace DanserMenuV3
 
 		private void CebRecord_Checked(object sender, RoutedEventArgs e)
 		{
-			if (CebRecord.IsChecked == true)
+			if (ChkRecord.IsChecked == true)
 			{
 				TebOutName.IsEnabled = true;
 			}
@@ -246,7 +259,7 @@ namespace DanserMenuV3
 
 		private void CebRecord_Unchecked(object sender, RoutedEventArgs e)
 		{
-			if (CebRecord.IsChecked == false)
+			if (ChkRecord.IsChecked == false)
 			{
 				TebOutName.IsEnabled = false;
 			}
@@ -336,7 +349,7 @@ namespace DanserMenuV3
 			}
 			catch (Win32Exception)
 			{
-				MessageBox.Show("danser.exe not found in the same directory as the program!");
+				MessageBox.Show("danser.exe not found in the same directory as the program!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 		}
 
@@ -381,6 +394,16 @@ namespace DanserMenuV3
 		private void StyleCheckBox_Checked(object sender, RoutedEventArgs e)
 		{
 			AcrylicWindow.SetEnabled(this, false); // Doesn't work? :(
+		}
+
+        private void BuSettings_Click(object sender, RoutedEventArgs e)
+		{
+			settingsWindow.ShowDialog();
+        }
+
+		public void UpdateCulture(string langCode)
+        {
+			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCode);
 		}
 	}
 }
