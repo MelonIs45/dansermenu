@@ -98,10 +98,10 @@ namespace DanserMenuV3
             ChangeText();
         }
 
-        //protected void Window_Closing(object sender, CancelEventArgs e)
-        //{
-        //    Visibility = Visibility.Hidden;
-        //    e.Cancel = true;
-        //}
+        protected void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Visibility = Visibility.Hidden;
+            e.Cancel = true;
+        }
     }
 }
