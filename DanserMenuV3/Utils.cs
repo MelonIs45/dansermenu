@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Microsoft.Win32;
 using Size = System.Drawing.Size;
 
 namespace DanserMenuV3
@@ -23,6 +25,13 @@ namespace DanserMenuV3
                 1);
 
             return new Size((int)formattedText.Width, (int)formattedText.Height); // Returns the size of the string passed into the function
+        }
+
+        public int IsLightTheme()
+        {
+            string RegistryKey = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
+            int theme = (int)Registry.GetValue(RegistryKey, "SystemUsesLightTheme", string.Empty);
+            return theme;
         }
 
         public string FormatCommands(MainWindow mainWindow, string md5)

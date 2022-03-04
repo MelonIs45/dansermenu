@@ -98,7 +98,11 @@ namespace DanserMenuV3
             ChangeText();
         }
 
+<<<<<<< HEAD
+        protected void SettingsClosing(object sender, CancelEventArgs e)
+=======
         protected void Window_Closing(object sender, CancelEventArgs e)
+>>>>>>> 31a546306f161818d8121b584f4fca3c04f6d146
         {
             Visibility = Visibility.Hidden;
             e.Cancel = true;

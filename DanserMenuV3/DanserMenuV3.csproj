@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>DANSER Menu.ico</ApplicationIcon>
     <AssemblyName>DANSER Menu</AssemblyName>
+	<IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
+    <StartupObject>DanserMenuV3.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +17,7 @@
     <None Remove="update.png" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <PackageReference Include="Costura.Fody" Version="5.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
