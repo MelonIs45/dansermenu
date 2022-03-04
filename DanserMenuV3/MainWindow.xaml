@@ -10,12 +10,8 @@
         Title="DANSER Menu" Height="678" Width="800"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True"
-<<<<<<< HEAD
         Closing="MainClosing">
-=======
-        Closing="MainWindow_OnClosing">
->>>>>>> 31a546306f161818d8121b584f4fca3c04f6d146
-
+    
     <Window.Resources>
         <SolidColorBrush x:Key="TextColorLight">White</SolidColorBrush>
     </Window.Resources>

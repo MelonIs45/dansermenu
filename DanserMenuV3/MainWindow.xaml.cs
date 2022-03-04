@@ -412,16 +412,9 @@ namespace DanserMenuV3
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(langCode);
 		}
 
-<<<<<<< HEAD
 		public void MainClosing(object sender, EventArgs e)
 		{
 			Environment.Exit(0);
 		}
-=======
-        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
-        {
-            Environment.Exit(0);
-        }
->>>>>>> 31a546306f161818d8121b584f4fca3c04f6d146
     }
 }

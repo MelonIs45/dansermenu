@@ -9,11 +9,8 @@
         Title="DANSER Menu Settings" Height="138" Width="242"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True"
-<<<<<<< HEAD
         Closing="SettingsClosing">
-=======
-        Closing="Window_Closing">
->>>>>>> 31a546306f161818d8121b584f4fca3c04f6d146
+
     <Window.Resources>
         <Brush x:Key="TextColorLight">White</Brush>
     </Window.Resources>
