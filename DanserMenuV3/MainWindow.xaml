@@ -188,7 +188,7 @@
             </Button.Background>
         </Button>
         <Label x:Name="LabelCS" HorizontalContentAlignment="Right" Foreground="{DynamicResource TextColorLight}" Content="Custom Settings:" HorizontalAlignment="Left" Height="26" Margin="413,598,0,0" VerticalAlignment="Top" Width="141"/>
-        <Button x:Name="BtnSettingsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="30" Margin="554,596,0,0" VerticalAlignment="Top" Width="66" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSettingsBrowse_Click"/>
+        <Button x:Name="BtnSettingsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="30" Margin="554,595.5,0,0" VerticalAlignment="Top" Width="66" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSettingsBrowse_Click"/>
         <TextBox x:Name="TebSettingsName" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" Margin="620,594,0,0" VerticalAlignment="Top" Width="155" Style="{DynamicResource TextBoxRevealStyle}" TextChanged="TebSkinName_TextChanged"/>
         <CheckBox Foreground="{DynamicResource TextColorLight}" x:Name="StyleCheckBox" Content="Old Style:" HorizontalAlignment="Left" Height="19" Margin="20,601,0,0" VerticalAlignment="Top" Width="111" Checked="StyleCheckBox_Checked" Visibility="Hidden"/>
         <CheckBox Foreground="{DynamicResource TextColorLight}" x:Name="ChkNoUpdateCheck" Content="No Update Check" HorizontalAlignment="Left" Height="14" Margin="436,479,0,0" VerticalAlignment="Top" Width="175"/>

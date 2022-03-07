@@ -8,6 +8,8 @@ using System.Threading;
 using System.Globalization;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace DanserMenuV3
 {
@@ -16,13 +18,16 @@ namespace DanserMenuV3
         public Settings SettingsObject;
         public string SerializedJson;
         public JObject ObjectJson;
+        public JObject DanserJson;
         public MainWindow MainWindow;
         public string[] LanguageCodes;
         public string[] Languages;
+        private Utils _utils = new Utils();
 
         public SettingsWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+
 
             MainWindow = mainWindow;
             SettingsObject = new Settings();
@@ -38,6 +43,8 @@ namespace DanserMenuV3
             }
 
             ObjectJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\menu-settings.json"));
+            DanserJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
+            //MessageBox.Show(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
 
             for (int i = 0; i < Languages.Length; i++)
             {
@@ -45,6 +52,7 @@ namespace DanserMenuV3
             }
 
             CobLanguage.SelectedIndex = CobLanguage.Items.IndexOf(ObjectJson["Language"].ToString());
+
         }
 
         public void ChangeText() // Big BLOB, dont mind this
@@ -102,6 +110,133 @@ namespace DanserMenuV3
         { 
             Visibility = Visibility.Hidden;
             e.Cancel = true;
+        }
+
+        private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var settingsFileDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    Filter = "setting files (*.json)|*.json",
+                    Title = "Open settings file",
+                    InitialDirectory = Directory.GetCurrentDirectory() + "\\settings"
+                };
+                var result = settingsFileDialog.ShowDialog(); // Opens a file dialog to select a settings file
+
+                if (result == true)
+                {
+                    var filename = settingsFileDialog.FileName;
+                    TebSettingsName.Text = filename.Split($"{Directory.GetCurrentDirectory() + "\\settings\\"}")[1].Split(".json")[0];
+                    DanserJson = JObject.Parse(File.ReadAllText(filename));
+                    //MessageBox.Show(filename + "###" + $"{Directory.GetCurrentDirectory()}\\settings\\default.json");
+                    UpdateValues();
+                }
+            }
+            catch (Exception ex)
+            {
+                using var logFile = new StreamWriter("menu.log", true);
+                _utils.LogError(logFile, ex);
+            }
+        }
+
+        public void UpdateValues()
+        {
+            TebSongsPath.Text = DanserJson["General"]["OsuSongsDir"].ToString().Replace("\\", "\\\\");
+            TebSkinsPath.Text = DanserJson["General"]["OsuSkinsDir"].ToString().Replace("\\", "\\\\");
+            ChkDiscordRPC.IsChecked = bool.Parse(DanserJson["General"]["DiscordPresenceOn"].ToString());
+            ChkFullscreen.IsChecked = bool.Parse(DanserJson["Graphics"]["Fullscreen"].ToString());
+            TBxMasterVolume.Text = DanserJson["Audio"]["GeneralVolume"].ToString();
+            TBxMusicVolume.Text = DanserJson["Audio"]["MusicVolume"].ToString();
+            TBxHitsoundVolume.Text = DanserJson["Audio"]["SampleVolume"].ToString();
+            ChkSkinCursor.IsChecked = bool.Parse(DanserJson["Skin"]["Cursor"]["UseSkinCursor"].ToString());
+            TBxBackgroundDim.Text = DanserJson["Playfield"]["Background"]["Dim"]["Normal"].ToString();
+            CobKnockoutMode.SelectedIndex = Convert.ToInt32(DanserJson["Knockout"]["Mode"].ToString());
+            ChkAddDanser.IsChecked = bool.Parse(DanserJson["Knockout"]["AddDanser"].ToString());
+            TebDanserName.Text = DanserJson["Knockout"]["DanserName"].ToString();
+            TBxRecordingWidth.Text = DanserJson["Recording"]["FrameWidth"].ToString();
+            TBxRecordingHeight.Text = DanserJson["Recording"]["FrameHeight"].ToString();
+            TBxRecordingFps.Text = DanserJson["Recording"]["FPS"].ToString();
+            TBxRecordingExtension.Text = DanserJson["Recording"]["Container"].ToString();
+
+            if (ChkAddDanser.IsChecked == true)
+            {
+                TebDanserName.IsEnabled = true;
+            }
+            else
+            {
+                TebDanserName.IsEnabled = false;
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void BtnSongsBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                var songsFolderDialog = new System.Windows.Forms.FolderBrowserDialog()
+                {
+                    SelectedPath = Directory.GetCurrentDirectory()
+                };
+
+                var result = songsFolderDialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    TebSongsPath.Text = songsFolderDialog.SelectedPath.Replace("\\", "\\\\");
+                }
+            }
+            catch (Exception ex)
+            {
+                using var logFile = new StreamWriter("menu.log", true);
+                _utils.LogError(logFile, ex);
+            }
+        }
+
+        private void BtnSkinsBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                var songsFolderDialog = new System.Windows.Forms.FolderBrowserDialog()
+                {
+                    SelectedPath = Directory.GetCurrentDirectory()
+                };
+
+                var result = songsFolderDialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    TebSkinsPath.Text = songsFolderDialog.SelectedPath.Replace("\\", "\\\\");
+                }
+            }
+            catch (Exception ex)
+            {
+                using var logFile = new StreamWriter("menu.log", true);
+                _utils.LogError(logFile, ex);
+            }
+        }
+
+        private void ChkAddDanser_Checked(object sender, RoutedEventArgs e)
+        {
+            if (ChkAddDanser.IsChecked == true)
+            {
+                TebDanserName.IsEnabled = true;
+            }
+            else
+            {
+                TebDanserName.IsEnabled = false;
+            }
         }
     }
 }

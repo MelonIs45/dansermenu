@@ -250,9 +250,8 @@ namespace DanserMenuV3
 
 		private void TebSkinName_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			var utils = new Utils();
 			TebSkinName.Height = 50;
-			if (utils.MeasureString(TebSkinName).Width < TebSkinName.ActualWidth) TebSkinName.Height = 36;
+			if (_utils.MeasureString(TebSkinName).Width < TebSkinName.ActualWidth) TebSkinName.Height = 36;
 		}
 
 		private void CebRecord_Checked(object sender, RoutedEventArgs e)
@@ -405,6 +404,7 @@ namespace DanserMenuV3
         private void BuSettings_Click(object sender, RoutedEventArgs e)
 		{
 			settingsWindow.Show();
+			settingsWindow.UpdateValues();
         }
 
 		public void UpdateCulture(string langCode)
