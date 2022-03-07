@@ -44,7 +44,7 @@ namespace DanserMenuV3
 
             ObjectJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\menu-settings.json"));
             DanserJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
-            //MessageBox.Show(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
+            TebSettingsName.Text = "default";
 
             for (int i = 0; i < Languages.Length; i++)
             {
@@ -99,8 +99,10 @@ namespace DanserMenuV3
             {
                 File.Create("menu-settings.json").Close();
             }
-            SerializedJson = Newtonsoft.Json.JsonConvert.SerializeObject(SettingsObject);
+            SerializedJson = Newtonsoft.Json.JsonConvert.SerializeObject(SettingsObject, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText($"{Directory.GetCurrentDirectory()}\\menu-settings.json", SerializedJson);
+
+            SaveValues();
 
             MainWindow.UpdateCulture(LanguageCodes[Languages.ToList().IndexOf(SettingsObject.Language)]);
             ChangeText();
@@ -140,20 +142,58 @@ namespace DanserMenuV3
             }
         }
 
+        public void SaveValues()
+        {
+            DanserJson["General"]["OsuSongsDir"] = TebSongsPath.Text;
+            DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text;
+            DanserJson["General"]["DiscordPresenceOn"] = ChkDiscordRPC.IsChecked.ToString();
+
+            DanserJson["Graphics"]["FullScreen"] = ChkFullscreen.IsChecked.ToString();
+
+            DanserJson["Audio"]["GeneralVolume"] = Convert.ToDecimal(TBxMasterVolume.Text);
+            DanserJson["Audio"]["MusicVolume"] = Convert.ToDecimal(TBxMusicVolume.Text);
+            DanserJson["Audio"]["SampleVolume"] = Convert.ToDecimal(TBxHitsoundVolume.Text);
+
+            DanserJson["Skin"]["Cursor"]["UseSkinCursor"] = ChkSkinCursor.IsChecked.ToString();
+
+            MessageBox.Show(TebSettingsName.Text);
+
+            DanserJson["Playfield"]["Background"]["Dim"]["Normal"] = Convert.ToDecimal(TBxBackgroundDim.Text);
+
+            DanserJson["Knockout"]["Mode"] = CobKnockoutMode.SelectedIndex;
+            DanserJson["Knockout"]["AddDanser"] = ChkAddDanser.IsChecked.ToString();
+            DanserJson["Knockout"]["DanserName"] = TebDanserName.Text;
+
+            DanserJson["Recording"]["FrameWidth"] = TBxRecordingWidth.Text;
+            DanserJson["Recording"]["FrameHeight"] = TBxRecordingHeight.Text;
+            DanserJson["Recording"]["FPS"] = Convert.ToInt32(TBxRecordingFps.Text);
+            DanserJson["Recording"]["Container"] = TBxRecordingExtension.Text;
+
+            string danserJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(DanserJson, Newtonsoft.Json.Formatting.Indented);
+            string settingsPath = $"{Directory.GetCurrentDirectory()}\\settings\\{TebSettingsName.Text}.json";
+            File.WriteAllText(settingsPath, danserJsonString);
+        }
+
         public void UpdateValues()
         {
             TebSongsPath.Text = DanserJson["General"]["OsuSongsDir"].ToString().Replace("\\", "\\\\");
             TebSkinsPath.Text = DanserJson["General"]["OsuSkinsDir"].ToString().Replace("\\", "\\\\");
             ChkDiscordRPC.IsChecked = bool.Parse(DanserJson["General"]["DiscordPresenceOn"].ToString());
+
             ChkFullscreen.IsChecked = bool.Parse(DanserJson["Graphics"]["Fullscreen"].ToString());
+
             TBxMasterVolume.Text = DanserJson["Audio"]["GeneralVolume"].ToString();
             TBxMusicVolume.Text = DanserJson["Audio"]["MusicVolume"].ToString();
             TBxHitsoundVolume.Text = DanserJson["Audio"]["SampleVolume"].ToString();
+
             ChkSkinCursor.IsChecked = bool.Parse(DanserJson["Skin"]["Cursor"]["UseSkinCursor"].ToString());
+
             TBxBackgroundDim.Text = DanserJson["Playfield"]["Background"]["Dim"]["Normal"].ToString();
+
             CobKnockoutMode.SelectedIndex = Convert.ToInt32(DanserJson["Knockout"]["Mode"].ToString());
             ChkAddDanser.IsChecked = bool.Parse(DanserJson["Knockout"]["AddDanser"].ToString());
             TebDanserName.Text = DanserJson["Knockout"]["DanserName"].ToString();
+
             TBxRecordingWidth.Text = DanserJson["Recording"]["FrameWidth"].ToString();
             TBxRecordingHeight.Text = DanserJson["Recording"]["FrameHeight"].ToString();
             TBxRecordingFps.Text = DanserJson["Recording"]["FPS"].ToString();
