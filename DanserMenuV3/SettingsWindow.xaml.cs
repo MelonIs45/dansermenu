@@ -144,8 +144,14 @@ namespace DanserMenuV3
 
         public void SaveValues()
         {
-            DanserJson["General"]["OsuSongsDir"] = TebSongsPath.Text;
-            DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text;
+            if (TebSongsPath.Text != DanserJson["General"]["OsuSongsDir"].ToString())
+            {
+                DanserJson["General"]["OsuSongsDir"] = TebSongsPath.Text.Replace("\\", "\\\\");
+            }
+            if (TebSkinsPath.Text != DanserJson["General"]["OsuSkinsDir"].ToString())
+            {
+                DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text.Replace("\\", "\\\\");
+            }
             DanserJson["General"]["DiscordPresenceOn"] = ChkDiscordRPC.IsChecked.ToString();
 
             DanserJson["Graphics"]["FullScreen"] = ChkFullscreen.IsChecked.ToString();
@@ -155,8 +161,6 @@ namespace DanserMenuV3
             DanserJson["Audio"]["SampleVolume"] = Convert.ToDecimal(TBxHitsoundVolume.Text);
 
             DanserJson["Skin"]["Cursor"]["UseSkinCursor"] = ChkSkinCursor.IsChecked.ToString();
-
-            MessageBox.Show(TebSettingsName.Text);
 
             DanserJson["Playfield"]["Background"]["Dim"]["Normal"] = Convert.ToDecimal(TBxBackgroundDim.Text);
 
@@ -172,12 +176,14 @@ namespace DanserMenuV3
             string danserJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(DanserJson, Newtonsoft.Json.Formatting.Indented);
             string settingsPath = $"{Directory.GetCurrentDirectory()}\\settings\\{TebSettingsName.Text}.json";
             File.WriteAllText(settingsPath, danserJsonString);
+
+            MessageBox.Show("Settings updated successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void UpdateValues()
         {
-            TebSongsPath.Text = DanserJson["General"]["OsuSongsDir"].ToString().Replace("\\", "\\\\");
-            TebSkinsPath.Text = DanserJson["General"]["OsuSkinsDir"].ToString().Replace("\\", "\\\\");
+            TebSongsPath.Text = DanserJson["General"]["OsuSongsDir"].ToString().Replace("\\\\", "\\");
+            TebSkinsPath.Text = DanserJson["General"]["OsuSkinsDir"].ToString().Replace("\\\\", "\\");
             ChkDiscordRPC.IsChecked = bool.Parse(DanserJson["General"]["DiscordPresenceOn"].ToString());
 
             ChkFullscreen.IsChecked = bool.Parse(DanserJson["Graphics"]["Fullscreen"].ToString());
@@ -234,7 +240,7 @@ namespace DanserMenuV3
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    TebSongsPath.Text = songsFolderDialog.SelectedPath.Replace("\\", "\\\\");
+                    TebSongsPath.Text = songsFolderDialog.SelectedPath;
                 }
             }
             catch (Exception ex)
@@ -243,6 +249,8 @@ namespace DanserMenuV3
                 _utils.LogError(logFile, ex);
             }
         }
+
+        // Yes these 2 methods are basically the same i know
 
         private void BtnSkinsBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -257,7 +265,7 @@ namespace DanserMenuV3
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    TebSkinsPath.Text = songsFolderDialog.SelectedPath.Replace("\\", "\\\\");
+                    TebSkinsPath.Text = songsFolderDialog.SelectedPath;
                 }
             }
             catch (Exception ex)

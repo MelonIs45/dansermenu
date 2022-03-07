@@ -6,7 +6,7 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:local="clr-namespace:DanserMenuV3"
         mc:Ignorable="d"
-        Title="DANSER Menu Settings" Height="400" Width="508"
+        Title="DANSER Menu Settings" Height="430" Width="561"
         ResizeMode="NoResize"
         fw:AcrylicWindow.Enabled="True"
         Closing="SettingsClosing">
@@ -15,30 +15,35 @@
         <Brush x:Key="TextColorLight">White</Brush>
     </Window.Resources>
     <Grid>
-        <ComboBox x:Name="CobLanguage" HorizontalAlignment="Left" Style="{StaticResource ComboBoxRevealStyle}" Margin="111,6,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CobLanguage_SelectionChanged"/>
-        <Label x:Name="LabelLANG" Content="Language:" HorizontalContentAlignment="Right" Foreground="{StaticResource TextColorLight}" HorizontalAlignment="Left" Margin="15,9,0,0" VerticalAlignment="Top" Width="91"/>
-        <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Right" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" VerticalAlignment="Top" Width="70" Click="BuSave_Click" Margin="0,9,10,0"/>
-        <Label x:Name="LabelDS" Foreground="{DynamicResource TextColorLight}" Content="Danser Settings" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelSetCS" Foreground="{DynamicResource TextColorLight}" Content="Settings to edit:" HorizontalAlignment="Left" Margin="226,41,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSettingsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="319,37.9,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSettingsBrowse_Click"/>
-        <TextBox x:Name="TebSettingsName" IsEnabled="false" FontSize="12" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" Margin="371,38,0,0" VerticalAlignment="Top" Width="127" Style="{DynamicResource TextBoxRevealStyle}"/>
+        <GroupBox Foreground="{DynamicResource TextColorLight}" Header="DANSER Settings" Margin="22,75,20,10"/>
 
-        <Label x:Name="LabelSetOSoL" Foreground="{DynamicResource TextColorLight}" Content="osu! Songs Location:" HorizontalAlignment="Left" Margin="11,82,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TebSongsPath" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="186,82,0,0" VerticalAlignment="Top" Width="312" Style="{DynamicResource TextBoxRevealStyle}"/>
-        <Button x:Name="BtnSongsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="134,82,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSongsBrowse_Click"/>
+        <ComboBox x:Name="CobLanguage" HorizontalAlignment="Left" Style="{StaticResource ComboBoxRevealStyle}" Margin="118,23,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CobLanguage_SelectionChanged"/>
+        <Label x:Name="LabelLANG" Content="Language:" HorizontalContentAlignment="Right" Foreground="{StaticResource TextColorLight}" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top" Width="91"/>
+        <Button x:Name="BtnSave" HorizontalAlignment="Right" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" VerticalAlignment="Top" Width="70" Click="BuSave_Click" Margin="0,9,20,0" Height="70">
+            <Button.Background>
+                <ImageBrush ImageSource="/save.png"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="LabelSetCS" Foreground="{DynamicResource TextColorLight}" Content="Settings to edit:" HorizontalAlignment="Left" Margin="319,9,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnSettingsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="271,39,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSettingsBrowse_Click"/>
+        <TextBox x:Name="TebSettingsName" IsEnabled="false" FontSize="12" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" Margin="323,40,0,0" VerticalAlignment="Top" Width="127" Style="{DynamicResource TextBoxRevealStyle}"/>
 
-        <Label x:Name="LabelSetOSkL" Foreground="{DynamicResource TextColorLight}" Content="osu! Skins Location:" HorizontalAlignment="Left" Margin="11,127,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TebSkinsPath" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="186,127,0,0" VerticalAlignment="Top" Width="312" Style="{DynamicResource TextBoxRevealStyle}"/>
-        <Button x:Name="BtnSkinsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="134,127,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSkinsBrowse_Click"/>
+        <Label x:Name="LabelSetOSoL" Foreground="{DynamicResource TextColorLight}" Content="osu! Songs Location:" HorizontalAlignment="Left" Margin="35,105,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TebSongsPath" IsEnabled="false" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="210,105,0,0" VerticalAlignment="Top" Width="312" Style="{DynamicResource TextBoxRevealStyle}"/>
+        <Button x:Name="BtnSongsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="158,105,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSongsBrowse_Click"/>
 
-        <CheckBox x:Name="ChkDiscordRPC" Foreground="{DynamicResource TextColorLight}" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" Content=":Discord Rich Presence" HorizontalAlignment="Left" Margin="15,170,0,0" VerticalAlignment="Top" Width="140">
+        <Label x:Name="LabelSetOSkL" Foreground="{DynamicResource TextColorLight}" Content="osu! Skins Location:" HorizontalAlignment="Left" Margin="35,150,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TebSkinsPath" IsEnabled="false" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="210,150,0,0" VerticalAlignment="Top" Width="312" Style="{DynamicResource TextBoxRevealStyle}"/>
+        <Button x:Name="BtnSkinsBrowse" Foreground="{DynamicResource TextColorLight}" Content="Browse" HorizontalAlignment="Left" Height="32" Margin="158,150,0,0" VerticalAlignment="Top" Width="52" Style="{DynamicResource ButtonRevealStyle}" Click="BtnSkinsBrowse_Click"/>
+
+        <CheckBox x:Name="ChkDiscordRPC" Foreground="{DynamicResource TextColorLight}" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" Content=":Discord Rich Presence" HorizontalAlignment="Left" Margin="39,193,0,0" VerticalAlignment="Top" Width="140">
             <CheckBox.Resources>
                 <Style TargetType="{x:Type Path}">
                     <Setter Property="FlowDirection" Value="LeftToRight"/>
                 </Style>
             </CheckBox.Resources>
         </CheckBox>
-        <CheckBox x:Name="ChkFullscreen" Foreground="{DynamicResource TextColorLight}" Content=":Fullscreen" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="15,199,0,0" VerticalAlignment="Top" Width="140">
+        <CheckBox x:Name="ChkFullscreen" Foreground="{DynamicResource TextColorLight}" Content=":Fullscreen" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="39,222,0,0" VerticalAlignment="Top" Width="140">
             <CheckBox.Resources>
                 <Style TargetType="{x:Type Path}">
                     <Setter Property="FlowDirection" Value="LeftToRight"/>
@@ -46,45 +51,45 @@
             </CheckBox.Resources>
         </CheckBox>
 
-        <Label x:Name="LabelSetGV" Foreground="{DynamicResource TextColorLight}" Content="Master Volume:" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxMasterVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=MasterVolumeScrollbar, StringFormat={}{0:#,#.0}, Mode=TwoWay}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="117,223,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="LabelSetMV" Foreground="{DynamicResource TextColorLight}" Content="Music Volume:" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxMusicVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=MusicVolumeScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="117,247,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="LabelSetSV" Foreground="{DynamicResource TextColorLight}" Content="Hitsound Volume:" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxHitsoundVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=HitsoundVolumeScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="117,272,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ChkSkinCursor" Foreground="{DynamicResource TextColorLight}" Content=":Use Skin Cursor" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="15,300,0,0" VerticalAlignment="Top" Width="140">
+        <Label x:Name="LabelSetGV" Foreground="{DynamicResource TextColorLight}" Content="Master Volume:" HorizontalAlignment="Left" Margin="34,241,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxMasterVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=MasterVolumeScrollbar, StringFormat={}{0:#,#.0}, Mode=TwoWay}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="141,246,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelSetMV" Foreground="{DynamicResource TextColorLight}" Content="Music Volume:" HorizontalAlignment="Left" Margin="34,265,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxMusicVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=MusicVolumeScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="141,270,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelSetSV" Foreground="{DynamicResource TextColorLight}" Content="Hitsound Volume:" HorizontalAlignment="Left" Margin="34,289,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxHitsoundVolume" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=HitsoundVolumeScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="141,295,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ChkSkinCursor" Foreground="{DynamicResource TextColorLight}" Content=":Use Skin Cursor" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="39,323,0,0" VerticalAlignment="Top" Width="140">
             <CheckBox.Resources>
                 <Style TargetType="{x:Type Path}">
                     <Setter Property="FlowDirection" Value="LeftToRight"/>
                 </Style>
             </CheckBox.Resources>
         </CheckBox>
-        <Label x:Name="LabelKM" Foreground="{DynamicResource TextColorLight}" Content="Knockout Mode:" HorizontalAlignment="Left" Margin="214,164,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CobKnockoutMode" HorizontalAlignment="Left" Margin="319,167,0,0" VerticalAlignment="Top" Width="78">
+        <Label x:Name="LabelKM" Foreground="{DynamicResource TextColorLight}" Content="Knockout Mode:" HorizontalAlignment="Left" Margin="238,187,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CobKnockoutMode" HorizontalAlignment="Left" Margin="343,190,0,0" VerticalAlignment="Top" Width="78">
             <ComboBoxItem Content="0"/>
             <ComboBoxItem Content="1"/>
             <ComboBoxItem Content="2"/>
             <ComboBoxItem Content="3"/>
             <ComboBoxItem Content="4"/>
         </ComboBox>
-        <CheckBox x:Name="ChkAddDanser" Foreground="{DynamicResource TextColorLight}" Content=":Add Danser to Knockout" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="218,197,0,0" VerticalAlignment="Top" Width="162" Checked="ChkAddDanser_Checked">
+        <CheckBox x:Name="ChkAddDanser" Foreground="{DynamicResource TextColorLight}" Content=":Add Danser to Knockout" HorizontalContentAlignment="Right" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="242,220,0,0" VerticalAlignment="Top" Width="162" Checked="ChkAddDanser_Checked">
             <CheckBox.Resources>
                 <Style TargetType="{x:Type Path}">
                     <Setter Property="FlowDirection" Value="LeftToRight"/>
                 </Style>
             </CheckBox.Resources>
         </CheckBox>
-        <Label x:Name="LabelDN" Foreground="{DynamicResource TextColorLight}" Content="Danser Name:" HorizontalAlignment="Center" Margin="0,221,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TebDanserName" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="303,218,0,0" VerticalAlignment="Top" Width="195" Style="{DynamicResource TextBoxRevealStyle}"/>
-        <Label x:Name="LabelRW" Foreground="{DynamicResource TextColorLight}" Content="Recording Width:" HorizontalAlignment="Left" Margin="212,258,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelRH" Foreground="{DynamicResource TextColorLight}" Content="Recording Height:" HorizontalAlignment="Left" Margin="212,284,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxRecordingWidth" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="345,261,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxRecordingHeight" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="345,288,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="LabelRF" Foreground="{DynamicResource TextColorLight}" Content="Recording FPS:" HorizontalAlignment="Left" Margin="212,309,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxRecordingFps" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="345,314,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="LabelRE" Foreground="{DynamicResource TextColorLight}" Content="Recording Extension:" HorizontalAlignment="Left" Margin="212,333,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxRecordingExtension" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="345,339,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="LabelSetBD" Foreground="{DynamicResource TextColorLight}" Content="Background Dim:" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBxBackgroundDim" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=BackgroundDimScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="117,326,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelDN" Foreground="{DynamicResource TextColorLight}" Content="Danser Name:" HorizontalAlignment="Left" Margin="236,244,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TebDanserName" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Height="32" FontSize="12" Margin="327,241,0,0" VerticalAlignment="Top" Width="195" Style="{DynamicResource TextBoxRevealStyle}"/>
+        <Label x:Name="LabelRW" Foreground="{DynamicResource TextColorLight}" Content="Recording Width:" HorizontalAlignment="Left" Margin="236,281,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelRH" Foreground="{DynamicResource TextColorLight}" Content="Recording Height:" HorizontalAlignment="Left" Margin="236,307,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxRecordingWidth" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="369,284,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxRecordingHeight" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="369,311,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelRF" Foreground="{DynamicResource TextColorLight}" Content="Recording FPS:" HorizontalAlignment="Left" Margin="236,332,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxRecordingFps" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="369,337,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelRE" Foreground="{DynamicResource TextColorLight}" Content="Recording Extension:" HorizontalAlignment="Left" Margin="236,356,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxRecordingExtension" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="369,362,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="LabelSetBD" Foreground="{DynamicResource TextColorLight}" Content="Background Dim:" HorizontalAlignment="Left" Margin="34,343,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBxBackgroundDim" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=BackgroundDimScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="141,349,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </Window>
