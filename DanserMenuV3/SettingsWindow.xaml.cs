@@ -152,24 +152,24 @@ namespace DanserMenuV3
             {
                 DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text.Replace("\\", "\\\\");
             }
-            DanserJson["General"]["DiscordPresenceOn"] = ChkDiscordRPC.IsChecked.ToString();
+            DanserJson["General"]["DiscordPresenceOn"] = ChkDiscordRPC.IsChecked;
 
-            DanserJson["Graphics"]["FullScreen"] = ChkFullscreen.IsChecked.ToString();
+            DanserJson["Graphics"]["FullScreen"] = ChkFullscreen.IsChecked;
 
             DanserJson["Audio"]["GeneralVolume"] = Convert.ToDecimal(TBxMasterVolume.Text);
             DanserJson["Audio"]["MusicVolume"] = Convert.ToDecimal(TBxMusicVolume.Text);
             DanserJson["Audio"]["SampleVolume"] = Convert.ToDecimal(TBxHitsoundVolume.Text);
 
-            DanserJson["Skin"]["Cursor"]["UseSkinCursor"] = ChkSkinCursor.IsChecked.ToString();
+            DanserJson["Skin"]["Cursor"]["UseSkinCursor"] = ChkSkinCursor.IsChecked;
 
             DanserJson["Playfield"]["Background"]["Dim"]["Normal"] = Convert.ToDecimal(TBxBackgroundDim.Text);
 
             DanserJson["Knockout"]["Mode"] = CobKnockoutMode.SelectedIndex;
-            DanserJson["Knockout"]["AddDanser"] = ChkAddDanser.IsChecked.ToString();
+            DanserJson["Knockout"]["AddDanser"] = ChkAddDanser.IsChecked;
             DanserJson["Knockout"]["DanserName"] = TebDanserName.Text;
 
-            DanserJson["Recording"]["FrameWidth"] = TBxRecordingWidth.Text;
-            DanserJson["Recording"]["FrameHeight"] = TBxRecordingHeight.Text;
+            DanserJson["Recording"]["FrameWidth"] = Convert.ToInt32(TBxRecordingWidth.Text);
+            DanserJson["Recording"]["FrameHeight"] = Convert.ToInt32(TBxRecordingHeight.Text);
             DanserJson["Recording"]["FPS"] = Convert.ToInt32(TBxRecordingFps.Text);
             DanserJson["Recording"]["Container"] = TBxRecordingExtension.Text;
 

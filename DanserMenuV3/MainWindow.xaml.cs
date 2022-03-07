@@ -26,6 +26,11 @@ namespace DanserMenuV3
 		{
 			InitializeComponent();
 
+			if (!File.Exists("danser.db") || !File.Exists("settings/default.json"))
+			{
+				StartDanser(" -md5=0", true); // Checks if danser.db exists and makes danser make it if it doesn't
+			}
+
 			settingsWindow = new SettingsWindow(this);
 
 			if (_utils.IsLightTheme() == 1)
@@ -52,11 +57,6 @@ namespace DanserMenuV3
 			if (!logExists)
 			{
 				File.Create("menu.log").Close(); // Makes menu.log if it didn't exist before
-			}
-
-			if (!File.Exists("danser.db") || !File.Exists("settings/default.json"))
-			{
-				StartDanser(" -md5=0"); // Checks if danser.db exists and makes danser make it if it doesn't
 			}
 
 			TebSearch_TextChanged(null, null);
@@ -120,7 +120,7 @@ namespace DanserMenuV3
 
 			if (selectedItem.Content.ToString() == "Replay")
 			{
-				StartDanser(_utils.FormatCommands(this, md5));
+				StartDanser(_utils.FormatCommands(this, md5), false);
 				return;
 			}
 
@@ -132,7 +132,7 @@ namespace DanserMenuV3
 
 			res.Close();
 
-			StartDanser(_utils.FormatCommands(this, md5));
+			StartDanser(_utils.FormatCommands(this, md5), false);
         }
 		catch (Exception ex)
 		{
@@ -215,24 +215,26 @@ namespace DanserMenuV3
 		{
 			try
 			{
-				var res = GetComboboxMapInfo();
+				if (e.AddedItems.Count > 0)
+                {
+					var res = GetComboboxMapInfo();
 
-				if (res != null)
-				{
-					while (res.Read())
+					if (res != null)
 					{
-						var maximum = Convert.ToDouble(res.GetString(33)) / 1000;
-						SliStartTime.Maximum = maximum;
-						SliEndTime.Maximum = maximum;
+						while (res.Read())
+						{
+							var maximum = Convert.ToDouble(res.GetString(33)) / 1000;
+							SliStartTime.Maximum = maximum;
+							SliEndTime.Maximum = maximum;
 
-						ArTextBox.Text = res.GetString(12); // AR Column
-						CsTextBox.Text = res.GetString(11); // CS Column
-						OdTextBox.Text = res.GetString(26); // OD Column
-						HpTextBox.Text = res.GetString(25); // HP Column
+							ArTextBox.Text = res.GetString(12); // AR Column
+							CsTextBox.Text = res.GetString(11); // CS Column
+							OdTextBox.Text = res.GetString(26); // OD Column
+							HpTextBox.Text = res.GetString(25); // HP Column
+						}
 					}
+					res.Close();
 				}
-
-				res.Close();
 			}
 			catch (Exception ex)
 			{
@@ -337,7 +339,7 @@ namespace DanserMenuV3
 			}
 		}
 
-		private void StartDanser(string args)
+		private void StartDanser(string args, bool firstTime)
 		{
 			var process = new Process();
 			var startInfo = new ProcessStartInfo
@@ -350,7 +352,12 @@ namespace DanserMenuV3
 			try
 			{
 				process.Start();
-				process.WaitForExit();
+				
+				if (firstTime)
+                {
+					process.WaitForExit();
+					TebSearch_TextChanged(null, null);
+				}
 			}
 			catch (Win32Exception)
 			{
@@ -360,7 +367,7 @@ namespace DanserMenuV3
 
 		private void BtnUpdateDb_Click(object sender, RoutedEventArgs e)
 		{
-			StartDanser(" -md5=0");
+			StartDanser(" -md5=0", true);
 		}
 
 		private void BtnSettingsBrowse_Click(object sender, RoutedEventArgs e)
