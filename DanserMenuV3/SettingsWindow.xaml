@@ -12,7 +12,7 @@
         Closing="SettingsClosing">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">Black</Brush>
+        <Brush x:Key="TextColorLight">White</Brush>
     </Window.Resources>
     <Grid>
         <GroupBox Foreground="{DynamicResource TextColorLight}" BorderThickness="0.5" Header="DANSER Settings" Margin="22,75,20,10"/>
