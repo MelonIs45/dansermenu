@@ -31,12 +31,6 @@ namespace DanserMenuV3
         {
             InitializeComponent();
 
-            string version = System.Windows.Forms.Application.ProductVersion;
-
-           
-
-            MessageBox.Show(version);
-
             MainWindow = mainWindow;
             SettingsObject = new Settings();
             LanguageCodes = new string[] { "en", "fr", "es", "pl", "nl", "de", "ru" };
@@ -51,7 +45,12 @@ namespace DanserMenuV3
             }
 
             ObjectJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\menu-settings.json"));
-            DanserJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
+
+            try
+            {
+                DanserJson = JObject.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\settings\\default.json"));
+            }
+            catch { }
             TebSettingsName.Text = "default";
 
             for (int i = 0; i < Languages.Length; i++)
@@ -117,7 +116,7 @@ namespace DanserMenuV3
         }
 
         protected void SettingsClosing(object sender, CancelEventArgs e)
-        { 
+        {
             Visibility = Visibility.Hidden;
             e.Cancel = true;
         }
@@ -298,33 +297,39 @@ namespace DanserMenuV3
         private async void BtnCheckUpdates_Click(object sender, RoutedEventArgs e)
         {
             var checker = new UpdateChecker("melonis45", "dansermenu"); // uses your Application.ProductVersion
-
-            UpdateType update = await checker.CheckUpdate();
-
-            if (update == UpdateType.None)
+            try
             {
-                MessageBox.Show("Up to date!", "Check was successful", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                // Ask the user if he wants to update
-                // You can use the prebuilt form for this if you want (it's really pretty!)
-                var result = new UpdateNotifyDialog(checker).ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                UpdateType update = await checker.CheckUpdate();
+                if (update == UpdateType.None)
                 {
-                    string url = $"https://github.com/melonis45/dansermenu/releases/download/{checker.latestTag}/DANSER-Menu-V{checker.latestTag}.zip";
-                    int processId = Process.GetCurrentProcess().Id;
-
-                    Process updateProcess = new Process();
-                    ProcessStartInfo startInfo = new ProcessStartInfo
-                    {
-                        FileName = "Updater.exe",
-                        Arguments = $"{url} {processId}"
-                    };
-
-                    updateProcess.StartInfo = startInfo;
-                    updateProcess.Start();
+                    MessageBox.Show("Up to date!", "Check was successful", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                else
+                {
+                    // Ask the user if he wants to update
+                    // You can use the prebuilt form for this if you want (it's really pretty!)
+                    var result = new UpdateNotifyDialog(checker).ShowDialog();
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        string url = $"https://github.com/melonis45/dansermenu/releases/download/{checker.latestTag}/DANSER-Menu-V{checker.latestTag}.zip";
+                        int processId = Process.GetCurrentProcess().Id;
+
+                        Process updateProcess = new Process();
+                        ProcessStartInfo startInfo = new ProcessStartInfo
+                        {
+                            FileName = "Updater.exe",
+                            Arguments = $"{url} {processId}"
+                        };
+
+                        updateProcess.StartInfo = startInfo;
+                        updateProcess.Start();
+                    }
+                }
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                MessageBox.Show("No internet connection found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
     }
