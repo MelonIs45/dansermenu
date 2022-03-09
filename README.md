@@ -15,7 +15,7 @@
 
 ## Known problems you might face
 1. `To run this application, you must install .NET Core.`
-* Simply download [THIS](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.22-windows-x64-installer) and install it onto your system.
+* Simply download [THIS](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.201-windows-x64-installer) and install it onto your system.
 2. `danser.exe not found in the same directory as the program!`
 * Make sure that all of your menu files are in the same folder as the main `danser.exe` file.
 3. Thats all I can think of so far
