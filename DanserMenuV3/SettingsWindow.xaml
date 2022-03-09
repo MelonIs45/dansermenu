@@ -12,13 +12,13 @@
         Closing="SettingsClosing">
 
     <Window.Resources>
-        <Brush x:Key="TextColorLight">White</Brush>
+        <Brush x:Key="TextColorLight">Black</Brush>
     </Window.Resources>
     <Grid>
-        <GroupBox Foreground="{DynamicResource TextColorLight}" Header="DANSER Settings" Margin="22,75,20,10"/>
+        <GroupBox Foreground="{DynamicResource TextColorLight}" BorderThickness="0.5" Header="DANSER Settings" Margin="22,75,20,10"/>
 
-        <ComboBox x:Name="CobLanguage" HorizontalAlignment="Left" Style="{StaticResource ComboBoxRevealStyle}" Margin="118,23,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CobLanguage_SelectionChanged"/>
-        <Label x:Name="LabelLANG" Content="Language:" HorizontalContentAlignment="Right" Foreground="{StaticResource TextColorLight}" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top" Width="91"/>
+        <ComboBox x:Name="CobLanguage" HorizontalAlignment="Left" Style="{StaticResource ComboBoxRevealStyle}" Margin="118,6,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CobLanguage_SelectionChanged"/>
+        <Label x:Name="LabelLANG" Content="Language:" HorizontalContentAlignment="Right" Foreground="{StaticResource TextColorLight}" HorizontalAlignment="Left" Margin="22,9,0,0" VerticalAlignment="Top" Width="91"/>
         <Button x:Name="BtnSave" HorizontalAlignment="Right" Style="{StaticResource ButtonRevealStyle}" Opacity="0.5" VerticalAlignment="Top" Width="70" Click="BuSave_Click" Margin="0,9,20,0" Height="70">
             <Button.Background>
                 <ImageBrush ImageSource="/save.png"/>
@@ -91,5 +91,6 @@
         <TextBox x:Name="TBxRecordingExtension" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="369,362,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label x:Name="LabelSetBD" Foreground="{DynamicResource TextColorLight}" Content="Background Dim:" HorizontalAlignment="Left" Margin="34,343,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TBxBackgroundDim" PreviewTextInput="DecimalValidationTextBox" Text="{Binding Value, ElementName=BackgroundDimScrollbar, Mode=TwoWay, StringFormat=\{0:#\,#.0\}}"  MaxLength="5" VerticalContentAlignment="Center" FontSize="12" Height="16" Margin="141,349,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="BtnCheckUpdates" Foreground="{DynamicResource TextColorLight}" Content="Check for Updates" HorizontalAlignment="Left" Height="27" Margin="118,48,0,0" VerticalAlignment="Top" Width="120" Style="{DynamicResource ButtonRevealStyle}" Click="BtnCheckUpdates_Click"/>
     </Grid>
 </Window>

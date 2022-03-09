@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>DANSER Menu.ico</ApplicationIcon>
     <AssemblyName>DANSER Menu</AssemblyName>
 	<IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
     <StartupObject>DanserMenuV3.App</StartupObject>
+    <AssemblyVersion>4.3.0</AssemblyVersion>
+    <Version>4.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +30,20 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Updater\Updater.csproj" />
+	</ItemGroup>
+
   <ItemGroup>
+    <Reference Include="GitHubUpdate">
+      <HintPath>..\..\..\..\Users\ryanp\Downloads\New folder (13)\GitHubUpdate-1.1.0\GitHubUpdate-1.1.0\GitHubUpdate\bin\Debug\GitHubUpdate.dll</HintPath>
+    </Reference>
+    <Reference Include="Octokit">
+      <HintPath>..\..\..\..\Users\ryanp\Downloads\New folder (13)\GitHubUpdate-1.1.0\GitHubUpdate-1.1.0\GitHubUpdate\bin\Debug\Octokit.dll</HintPath>
+    </Reference>
+    <Reference Include="Semver">
+      <HintPath>..\..\..\..\Users\ryanp\Downloads\New folder (13)\GitHubUpdate-1.1.0\GitHubUpdate-1.1.0\GitHubUpdate\bin\Debug\Semver.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>C:\Windows\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
     </Reference>
@@ -43,6 +58,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -73,6 +93,13 @@
     <EmbeddedResource Update="Strings.ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

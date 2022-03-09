@@ -1,0 +1,15 @@
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.csproj.AssemblyReference.cache
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.AssemblyInfoInputs.cache
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.AssemblyInfo.cs
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.csproj.CoreCompileInputs.cache
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\Updater.exe
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\Updater.deps.json
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\Updater.runtimeconfig.json
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\Updater.dll
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\ref\Updater.dll
+C:\Repos\github.com\dansermenu\Updater\bin\Debug\net6.0\Updater.pdb
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.dll
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\ref\Updater.dll
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.pdb
+C:\Repos\github.com\dansermenu\Updater\obj\Debug\net6.0\Updater.genruntimeconfig.cache

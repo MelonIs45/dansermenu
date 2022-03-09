@@ -10,6 +10,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using GitHubUpdate;
+using DanserMenuV3;
+using System.Diagnostics;
 
 namespace DanserMenuV3
 {
@@ -28,6 +31,11 @@ namespace DanserMenuV3
         {
             InitializeComponent();
 
+            string version = System.Windows.Forms.Application.ProductVersion;
+
+           
+
+            MessageBox.Show(version);
 
             MainWindow = mainWindow;
             SettingsObject = new Settings();
@@ -146,11 +154,11 @@ namespace DanserMenuV3
         {
             if (TebSongsPath.Text != DanserJson["General"]["OsuSongsDir"].ToString())
             {
-                DanserJson["General"]["OsuSongsDir"] = TebSongsPath.Text.Replace("\\", "\\\\");
+                DanserJson["General"]["OsuSongsDir"] = TebSongsPath.Text;
             }
             if (TebSkinsPath.Text != DanserJson["General"]["OsuSkinsDir"].ToString())
             {
-                DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text.Replace("\\", "\\\\");
+                DanserJson["General"]["OsuSkinsDir"] = TebSkinsPath.Text;
             }
             DanserJson["General"]["DiscordPresenceOn"] = ChkDiscordRPC.IsChecked;
 
@@ -284,6 +292,39 @@ namespace DanserMenuV3
             else
             {
                 TebDanserName.IsEnabled = false;
+            }
+        }
+
+        private async void BtnCheckUpdates_Click(object sender, RoutedEventArgs e)
+        {
+            var checker = new UpdateChecker("melonis45", "dansermenu"); // uses your Application.ProductVersion
+
+            UpdateType update = await checker.CheckUpdate();
+
+            if (update == UpdateType.None)
+            {
+                MessageBox.Show("Up to date!", "Check was successful", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                // Ask the user if he wants to update
+                // You can use the prebuilt form for this if you want (it's really pretty!)
+                var result = new UpdateNotifyDialog(checker).ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string url = $"https://github.com/melonis45/dansermenu/releases/download/{checker.latestTag}/DANSER-Menu-V{checker.latestTag}.zip";
+                    int processId = Process.GetCurrentProcess().Id;
+
+                    Process updateProcess = new Process();
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        FileName = "Updater.exe",
+                        Arguments = $"{url} {processId}"
+                    };
+
+                    updateProcess.StartInfo = startInfo;
+                    updateProcess.Start();
+                }
             }
         }
     }
