@@ -3,6 +3,10 @@
   <h1 align="center">DANSER Menu</h1>
 </p>
 
+## This project has been discontinued!
+[DANSER](https://github.com/Wieku/danser-go) now has an official launcher that comes with it when you download it, which I highly recommend you use as DANSER continues to get updated.\
+I'm grateful that I was able to create something that a lot of people could rely on, and thank you to all the people who supported the project! It let me take my mind off of things during school and other stressful times 🤣 so yeah thanks! 🥰
+
 <h2 align="center">A menu made for <a href="https://github.com/Wieku/danser-go">DANSER</a>, a cursordance client based on the rythmn game <a href="https://github.com/ppy/osu">osu!</a></h2>
 <br>
 
